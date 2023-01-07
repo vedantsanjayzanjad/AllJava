@@ -1,0 +1,17 @@
+package com.staticjava;
+
+interface inter
+{
+
+}
+
+
+
+
+
+public class Test 
+{
+	public static void main(String[] args) {
+		
+	}
+}

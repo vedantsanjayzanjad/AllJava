@@ -1,0 +1,83 @@
+package com.yash.ophs.model;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+
+@Entity
+public class PatientHistory {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "patientMedicineId")
+	int patientMedicineId;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "patient_allergy_history",referencedColumnName = "patient_allergy_history")
+	private PatientAllergyHistory patientAllergyHistory;
+
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "patient_disease_history_id",referencedColumnName = "patient_disease_history_id")
+	private PatientDiseaseHistory patientDiseaseHistory;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "patient_hospital_history",referencedColumnName = "patient_hospital_history")
+	private PatientHospitalHistory patientHospitalHistory;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "phhId",referencedColumnName = "phhId")
+	private  PatientMedicianhistory pmhId;
+	
+	PatientHistory()
+	{
+		
+	}
+
+	public int getPatientMedicineId() {
+		return patientMedicineId;
+	}
+
+	public void setPatientMedicineId(int patientMedicineId) {
+		this.patientMedicineId = patientMedicineId;
+	}
+
+	public PatientAllergyHistory getPatientAllergyHistory() {
+		return patientAllergyHistory;
+	}
+
+	public void setPatientAllergyHistory(PatientAllergyHistory patientAllergyHistory) {
+		this.patientAllergyHistory = patientAllergyHistory;
+	}
+
+	public PatientDiseaseHistory getPatientDiseaseHistory() {
+		return patientDiseaseHistory;
+	}
+
+	public void setPatientDiseaseHistory(PatientDiseaseHistory patientDiseaseHistory) {
+		this.patientDiseaseHistory = patientDiseaseHistory;
+	}
+
+	public PatientHospitalHistory getPatientHospitalHistory() {
+		return patientHospitalHistory;
+	}
+
+	public void setPatientHospitalHistory(PatientHospitalHistory patientHospitalHistory) {
+		this.patientHospitalHistory = patientHospitalHistory;
+	}
+
+	public PatientMedicianhistory getPmhId() {
+		return pmhId;
+	}
+
+	public void setPmhId(PatientMedicianhistory pmhId) {
+		this.pmhId = pmhId;
+	}
+	
+	
+
+}

@@ -1,0 +1,9 @@
+package com.array;
+
+public class EvenAndOddPosition 
+{
+	public static void main(String[] args) 
+	{
+		
+	}
+}

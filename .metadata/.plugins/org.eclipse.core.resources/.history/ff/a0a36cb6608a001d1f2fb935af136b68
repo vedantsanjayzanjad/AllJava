@@ -1,0 +1,6 @@
+package com.functionalinterface;
+
+public interface InterTwo extends InterOne
+{
+
+}

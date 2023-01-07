@@ -1,0 +1,8 @@
+package com.array;
+
+public class ArraysAreEqual 
+{
+	public static void main(String[] args) {
+		
+	}
+}

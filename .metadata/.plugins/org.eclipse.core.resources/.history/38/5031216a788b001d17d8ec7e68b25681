@@ -1,0 +1,17 @@
+package com.predicate;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Main 
+{
+	public static void main(String[] args) 
+	{
+		List <Employee> list = new ArrayList<Employee>();
+		list.add(new Employee(1,"Vedant", 2000));
+		list.add(new Employee(2,"Akshay", 1000));
+		list.add(new Employee(3,"Rushikesh", 3000));
+		
+		
+	}
+}

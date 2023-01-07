@@ -1,0 +1,16 @@
+package com.lambda;
+
+public inter InterVoid
+{
+	public void get();
+}
+
+
+
+public class Test 
+{
+	public static void main(String[] args) 
+	{
+		
+	}
+}

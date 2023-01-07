@@ -1,0 +1,6 @@
+package com.predicate;
+
+public class BiPredicate
+{
+	
+}

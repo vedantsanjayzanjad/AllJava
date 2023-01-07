@@ -1,0 +1,8 @@
+package com.function;
+
+public class BiFunction 
+{
+	private int empId;
+	private String empName;
+	
+}

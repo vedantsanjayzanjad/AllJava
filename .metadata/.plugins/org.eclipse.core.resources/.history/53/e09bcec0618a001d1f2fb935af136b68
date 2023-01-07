@@ -1,0 +1,20 @@
+package com.lambda;
+
+public interface inter
+{
+	public void get();
+}
+
+public interface interInt
+{
+	public void getInt();
+}
+
+
+public class Test 
+{
+	public static void main(String[] args) 
+	{
+		
+	}
+}

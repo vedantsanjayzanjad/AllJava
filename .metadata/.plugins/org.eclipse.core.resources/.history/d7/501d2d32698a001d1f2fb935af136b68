@@ -1,0 +1,12 @@
+package com.stream;
+
+import java.util.*;
+
+public class ToArray 
+{
+	public static void main(String[] args) {
+		List list = new ArrayList();
+		
+	}
+	
+}

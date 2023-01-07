@@ -1,0 +1,16 @@
+package com.stream;
+
+interface inter
+{
+	public static boolean isPrime(int number)
+	{
+		
+		
+	}
+
+}
+
+public class PrimeNumber 
+{
+
+}

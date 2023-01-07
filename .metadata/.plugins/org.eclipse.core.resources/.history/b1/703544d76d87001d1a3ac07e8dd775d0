@@ -1,0 +1,71 @@
+package com.blog.services.impl;
+
+import java.util.List;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.blog.model.Category;
+import com.blog.model.User;
+import com.blog.payloads.CategoryDto;
+import com.blog.payloads.UserDto;
+import com.blog.reposistories.CategoryDao;
+import com.blog.services.CategoryService;
+
+public class CategoryImpl implements CategoryService
+{
+
+	@Autowired
+	private CategoryDao catDao;
+	
+	@Autowired
+	private ModelMapper model;
+	
+	public Category dtoToCategory(CategoryDto catDto)
+	{
+		
+		Category category = model.map(catDto, Category.class);
+		return category;
+	}
+	
+	public CategoryDto categoryToDto(Category cat)
+	{
+		
+		CategoryDto categorydto = model.map(cat, CategoryDto.class);
+		return categorydto;
+	}
+
+	@Override
+	public CategoryDto createCategory(CategoryDto catDto) {
+		
+		Category dtoToCategory = this.dtoToCategory(catDto);
+		Category save = this.catDao.save(dtoToCategory);
+		return this.categoryToDto(save);
+	}
+
+	@Override
+	public List<CategoryDto> getAllCat() {
+		
+		return this.catDao.findAll();
+	}
+
+	@Override
+	public void deleteCatId(Integer catId) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public CategoryDto getOneCat(Integer catId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public CategoryDto updatecat(CategoryDto catDto, Integer catId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
+}

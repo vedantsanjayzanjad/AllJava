@@ -1,0 +1,8 @@
+package com.stream;
+
+import java.util.*;
+
+public class ToArray 
+{
+	List list = new ArrayList();
+}

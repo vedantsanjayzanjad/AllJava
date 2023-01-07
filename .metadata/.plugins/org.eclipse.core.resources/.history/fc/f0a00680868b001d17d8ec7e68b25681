@@ -1,0 +1,6 @@
+package com.function;
+
+public class Function 
+{
+	Function<STring,Integer> func = i ->i.length();
+}

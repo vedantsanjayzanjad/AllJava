@@ -1,0 +1,5 @@
+package com.staticjava;
+
+public interface inter {
+
+}

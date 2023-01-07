@@ -1,0 +1,24 @@
+package com.listtomap;
+
+import java.util.Arrays;
+import java.util.List;
+
+public class Test 
+{
+	private int empId;
+	private String empName;
+	private String empSalary;
+	
+	public Test(int empId,String empName,String empSalary)
+	{
+		this.empId = empId;
+		this.empName = empName;
+		this.empSalary = empSalary;
+		
+	}
+	public static void main(String[] args) 
+	{
+		
+		
+	}
+}

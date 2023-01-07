@@ -1,0 +1,11 @@
+package com.flatmap;
+
+import java.util.Arrays;
+
+public class FlatMap 
+{
+	public static void main(String[] args)
+	{
+		List<String> listOne  = Arrays.asList("Vedant","Akshay","Sachin");
+	}
+}

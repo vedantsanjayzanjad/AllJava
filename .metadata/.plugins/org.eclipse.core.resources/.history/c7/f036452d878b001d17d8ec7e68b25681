@@ -1,0 +1,10 @@
+package com.function;
+
+import java.util.ArrayList;
+
+public class BiTest {
+	
+	public static void main(String[] args) {
+		ArrayList<BiFunction> next = new ArrayList<BiFunction>();
+	}
+}

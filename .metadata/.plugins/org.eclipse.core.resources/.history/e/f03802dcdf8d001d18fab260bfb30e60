@@ -1,0 +1,21 @@
+package com.stream;
+
+class Employee
+{
+	private int empId;
+	private String empName;
+	private String empCity;
+	
+	
+	
+}
+
+
+
+public class GroupBy 
+{
+	public static void main(String[] args) 
+	{
+		
+	}
+}

@@ -1,0 +1,19 @@
+package com.array;
+
+public class MaxAndMin 
+{
+	public static void main(String[] args) 
+	{
+		int arr [] = {12,234,56,35,63};
+		int max = arr[0];
+		
+		for(int i : arr)
+		{
+			if(arr[i] > max)
+			{
+				max = arr[i];
+			}
+		}
+		System.out.println("Maximum Element in an araay " + max);
+	}
+}

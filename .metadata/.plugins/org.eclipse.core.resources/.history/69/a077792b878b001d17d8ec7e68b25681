@@ -1,0 +1,8 @@
+package com.function;
+
+public class BiTest {
+	
+	public static void main(String[] args) {
+		
+	}
+}

@@ -1,0 +1,10 @@
+package com.basic;
+
+public class PolindromString {
+	public static void main(String[] args) {
+
+		String str = "Vedant";
+		String rev = "";
+		String temp = str; 
+	}
+}

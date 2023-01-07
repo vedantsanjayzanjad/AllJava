@@ -1,0 +1,17 @@
+package com.multiplesorting;
+
+import java.util.*;
+
+public class Salary {
+	
+	public static void main(String[] args) {
+		
+		List<Stduent>list = new ArrayList();
+		list.add(new Student(1,"Vedant",233));
+		list.add(new Student(2,"Akshay",234));
+		list.add(new Student(3,"Ajit",2334));
+		
+		list.stream().filter((e) -> e.s)
+		
+	}
+}

@@ -1,0 +1,33 @@
+package com.lambda;
+
+interface inter {
+	public void get();
+}
+
+interface interOne {
+	public void getInt(int a);
+}
+
+interface interTwo {
+	public void getInt(int a, int b);
+}
+
+interface interString {
+	public String getInt();
+}
+
+public class Test {
+	public static void main(String[] args) {
+		// First InterFace
+		inter i = () -> System.out.println("This is First Method");
+		i.get();
+
+		// Second InterFace
+		interOne j = a -> System.out.println("The Number Is " + a);
+		j.getInt(6);
+
+		// Second InterFace
+		interOne k = a -> System.out.println("The Number Is " + a);
+		j.getInt(6);
+	}
+}

@@ -1,0 +1,8 @@
+package com.blog.services.impl;
+
+import com.blog.services.CategoryService;
+
+public class CategoryImpl implements CategoryServiceg
+{
+
+}

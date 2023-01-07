@@ -1,0 +1,43 @@
+package com.multiplesorting;
+
+public class Student {
+	
+	private int id;
+	private String stdName;
+	private long stdFess;
+	
+	public Student(int id, String stdName, long stdFess) {
+		super();
+		this.id = id;
+		this.stdName = stdName;
+		this.stdFess = stdFess;
+	}
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getStdName() {
+		return stdName;
+	}
+	public void setStdName(String stdName) {
+		this.stdName = stdName;
+	}
+	public String getStdFess() {
+		return stdFess;
+	}
+	public void setStdFess(String stdFess) {
+		this.stdFess = stdFess;
+	}
+	
+	
+	@Override
+	public String toString() {
+		return "Student [id=" + id + ", stdName=" + stdName + ", stdFess=" + stdFess + "]";
+	}
+	
+	
+	
+}

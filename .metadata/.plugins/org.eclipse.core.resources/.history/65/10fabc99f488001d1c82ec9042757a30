@@ -1,0 +1,12 @@
+package com.lcwd.user.service.entities;
+
+public class Hotel {
+
+	private String hotelId;
+	
+	private String hotelName;
+	
+	private String location;
+	
+	private String about;
+}
