@@ -1,0 +1,108 @@
+Data structure
+
+****Introduction******
+
+1)To organize the data
+2)After organize the data it is easy to perfrom the action on it.
+
+************Types Of data strcture
+1)Linear ds
+a)Array
+b)LinkedList
+c)Stack                                                                                                                                                                                                                                                                                                                                                                             
+d)Queue
+
+2)Non-Linear
+a)Tree
+b)Graph
+
+
+*********Introduction to Algoritham
+1)It is set of instruction
+
+*********Analysis of algorathim
+1)there are several algoritham to solve a problem
+2)We have to take such a algoritham which takes less time and less memory.
+
+*********Time Complexity
+1)amount of time taken by algorithm to run.
+2)the input taken by the an algorithm determine the time complexity.
+
+***********Space complexity
+1)It is amount of memory or space taken by algorithm
+
+***********Asymptototic analysis of an algorithm
+1)It helps in evaulting performance of an algorithm in terms of input size and its increase
+2)We dont measures actual running time of algorithm
+3)It helps in determining how time and space taken by algorithm increase with input size.
+ 
+**********Asymptototic notation
+1)It is a mathematical tools used to describe the running time of an algoarithm in terms of input size
+
+e.g vechicle on the highway,city,village
+
+a)best case
+b)Avearge case
+c)Worst case
+
+
+Types of notation
+Three notations are
+1)Omega(ohm)notation
+2)Big o(O)
+3)Theta(Theta)
+
+1)Omega notation
+1)Expresses the lower bound of an algorithm running time
+2)Determines the best amout of time an algorithm can take to complete
+for e.g.
+if it takes 100 sec to do operation so it will take more than 100s but not least than that.
+
+2)Big o(O)
+1)It is formal way to express the upper bound of an algorithm's running time 
+2)detemines the longestamount of time an algorithm can take to complete.
+
+3)Theta annoation 
+1)It express both the upper bound and lower bound of algorithms running time
+2)By lower and upper bound means for any given input this annoation deteremines average amount of time an algoarithm can take to complete.
+3)It is use in very rare case
+4)It calculates the average time for any input going through in that.
+
+
+***********Rules of Big O annoation
+Consider if we have machine(Computer)
+1) Its a single proccessor machine
+2)It performs sequential execution of statements
+3)Assignment operations takes 1 unit of time
+4)return statement takes in 1 minute of time
+5)Arithmatic operation takes 1 unit of time
+6)logical opeartion takes 1 unit of time'
+7)Other  small/single operations takes q unit of time
+8)Drop lower order terms
+9)drop also constant multipliers
+
+
+************Calculating time complexity of a constant algorithm
+1)For eg
+
+public int sum(int x,int y)
+{
+	2// int result = x + y;
+	3// return result
+} 
+
+line 	  time 		 total-time
+ 2       1+1+1+1      4
+ 3        1+1         2
+ 
+ TOTAL TIME = 6
+ six is nothing but constant
+ 
+ whatever the piece of code is there it will take constant time to produce the result
+ so
+ Time complexitivity is O(1)
+ 
+ 
+ 
+ 
+ 

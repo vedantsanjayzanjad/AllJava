@@ -1,0 +1,552 @@
+********************Introduction******************
+
+The Java Persistence API (JPA) is a specification of Java. 
+It is used to persist data between Java object and relational database. 
+JPA acts as a bridge between object-oriented domain models and relational database systems.
+As JPA is just a specification, it doesn't perform any operation by itself.
+It requires an implementation. 
+So, ORM tools like Hibernate, TopLink and iBatis implements JPA specifications for data persistence.
+
+
+*******************Steps to persist an entity object************
+
+1) Creating an entity manager factory object
+The EntityManagerFactory interface present in java.persistence package is used to provide an entity manager.
+
+EntityManagerFactory emf=Persistence.createEntityManagerFactory("Student_details");  
+
+Persistence - The Persistence is a bootstrap class which is used to obtain an EntityManagerFactory interface.
+
+createEntityManagerFactory() method - The role of this method is to create and return an EntityManagerFactory 
+for the named persistence unit. 
+Thus, this method contains the name of persistence unit passed in the Persistence.xml file.
+
+
+
+2)Obtaining an entity manager from factory.
+
+EntityManager em=emf.createEntityManager();  
+EntityManager - An EntityManager is an interface
+createEntityManager() method - It creates new application-managed EntityManager
+
+
+
+3) Intializing an entity manager.
+
+em.getTransaction().begin();  
+
+getTransaction() method - This method returns the resource-level EntityTransaction object.
+begin() method - This method is used to start the transaction.
+
+
+
+4) Persisting a data into relational database.
+
+em.persist(s1);  
+
+persist() - This method is used to make an instance managed and persistent. An entity instance is passed within this method.
+
+
+5) Closing the transaction
+
+em.getTransaction().commit();  
+
+
+6) Releasing the factory resources.
+emf.close();  
+em.close();  
+
+close() - This method is used to releasing the factory resources.
+Entity Operations
+
+
+******Inserting an Entity
+In JPA, we can easily insert data into database through entities. 
+The EntityManager provides ***persist()*** method to insert records.
+
+*******Finding an Entity
+To find an entity, 
+EntityManger interface provides ***find()*** 
+method that searches an element on the basis of primary key.
+
+*****Updating an Entity
+First we have to find the data after that we will set the data and then it will be updated.
+
+******Deleting an Entity
+To delete a record from database, EntityManager interface provides remove() method.
+The ***remove()*** method uses primary key to delete the particular record.
+
+
+
+****Collection Mapping in jpa**** 
+@ElementCollection  By using this annotation we can mapped the list set and map objects;
+
+
+******************JPA Cascading Operations
+In JPA, if any operation is applied on an entity then it will perform on that particular entity only. 
+These operations will not be applicable to the other entities that are related to it.
+To establish a dependency between related entities, 
+JPA provides javax.persistence.CascadeType enumerated types that define the cascade operations. 
+These cascading operations can be defined with any type of mapping 
+i.e. One-to-One, One-to-Many, Many-to-One, Many-to-Many.
+
+
+******************Cascade Operations Description
+PERSIST ::In this cascade operation, if the parent entity is persisted then all its related entity will also be persisted.
+like we have student subject and if we persisted the student then we dont have to persist the subject.
+
+MERGE :: In this cascade operation, if the parent entity is merged then all its related entity will also be merged.
+
+DETACH	:: In this cascade operation, if the parent entity is detached then all its related entity will also be detached.
+
+REFRESH	:: In this cascade operation, if the parent entity is refreshed then all its related entity will also be refreshed.
+
+REMOVE	:: In this cascade operation, if the parent entity is removed then all its related entity will also be removed.
+like we have student subject and if we persisted the student then we dont have to persist the subject.
+
+ALL	:: In this case, all the above cascade operations can be applied to the entities related to parent entity.
+
+
+*****************JPA JPQL Introduction(IMPORTANT)
+
+The JPQL (Java Persistence Query Language) is an object-oriented query language
+which is used to perform database operations on persistent entities. 
+Instead of database table, JPQL uses entity object model to operate the SQL queries. 
+Here, the role of JPA is to transform JPQL into SQL. 
+Thus, it provides an easy platform for developers to handle SQL tasks.
+
+
+******************Creating Queries in JPQL
+
+JPQL provides two methods that can be used to access database records.
+
+These methods are: -
+1)Query createQuery(String name) - The createQuery() method of EntityManager interface is used to create an 
+instance of Query interface for executing JPQL statement.
+Query query = em.createQuery("Select s.s_name from StudentEntity s");  
+This method creates dynamic queries that can be defined within business logic.
+
+2)Query createNamedQuery(String name) - The createNamedQuery() method of EntityManager interface 
+is used to create an instance of Query interface for executing named queries.
+@NamedQuery(name = "find name" , query = "Select s from StudentEntity s")  
+This method is used to create static queries that can be defined in entity class.
+
+Now, we can control the execution of query by the following Query interface methods:-
+int executeUpdate() - This method executes the update and delete operation.
+int getFirstResult() - This method returns the first positioned result the query object was set to retrieve.
+int getMaxResults() - This method returns the maximum number of results the query object was set to retrieve.
+java.util.List getResultList() - This method returns the list of results as an untyped list.
+Query setFirstResult(int startPosition) - This method assigns the position of first result to retrieve.
+Query setMaxResults(int maxResult) - This method assigns the maximum numbers of result to retrieve.
+
+
+***************JPQL dynamic query example
+
+public class FetchColumn {  
+      
+     public static void main( String args[]) {  
+             
+          EntityManagerFactory emf = Persistence.createEntityManagerFactory( "Student_details" );  
+          EntityManager em = emf.createEntityManager();  
+          em.getTransaction().begin( );  
+                    
+          Query query = em.createQuery("Select s.s_name from StudentEntity s");  
+          @SuppressWarnings("unchecked")  
+		  List<String> list =query.getResultList();  
+          System.out.println("Student Name :");  
+		  
+          for(String s:list) {  
+                
+             System.out.println(s);  
+          }           
+		  
+          em.close();  
+          emf.close();    
+     }  
+}  
+
+
+************BULK DATA OPERATION
+
+FETCH DATA ::::::::
+
+public class FetchData {  
+      
+     public static void main( String args[]) {  
+             
+          EntityManagerFactory emf = Persistence.createEntityManagerFactory( "Student_details" );  
+          EntityManager em = emf.createEntityManager();  
+          em.getTransaction().begin( );      
+          Query query = em.createQuery( "Select s from StudentEntity s ");     
+          @SuppressWarnings("unchecked")  
+          List<StudentEntity> list=(List<StudentEntity>)query.getResultList( );   
+          System.out.print("s_id");  
+          System.out.print("\t s_name");  
+          System.out.println("\t s_age");   
+          for( StudentEntity s:list ){  
+             System.out.print( s.getS_id( ));  
+             System.out.print("\t" +  s.getS_name( ));  
+            System.out.print("\t" + s.getS_age( ));  
+            System.out.println();  
+          }  
+		  
+em.getTransaction().commit();  
+          em.close();  
+          emf.close();    
+     }  
+}  
+
+EXECUTE UPDATE OPERATION :::::
+
+ public static void main( String args[]) {  
+             
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory( "Student_details" );  
+        EntityManager em = emf.createEntityManager();  
+        em.getTransaction().begin( );  
+            
+        Query query = em.createQuery( "update StudentEntity SET s_age=25 where s_id>103");  
+        query.executeUpdate();  
+  
+        em.getTransaction().commit();  
+        em.close();  
+        emf.close();    
+     }  
+	 
+EXECUTE DELETE OPERATION :::::::::
+
+public static void main( String args[]) 
+{  
+             
+          EntityManagerFactory emf = Persistence.createEntityManagerFactory( "Student_details" );  
+          EntityManager em = emf.createEntityManager();  
+          em.getTransaction().begin( );    
+          Query query = em.createQuery( "delete from StudentEntity where s_id=102");    
+          query.executeUpdate();  
+          em.getTransaction().commit();  
+          em.close();  
+          emf.close();    
+}  	 
+
+
+
+************JPA Criteria API****************
+
+The Criteria API is one of the most common ways of constructing queries
+for entities and their persistent state.
+It is just an alternative method for defining JPA queries.
+Criteria API defines a platform-independent criteria queries, 
+written in Java programming language. 
+It was introduced in JPA 2.0. 
+The main purpose behind this is to provide a type-safe way to express a query.
+
+*****************Steps to create Criteria Query :::::::::::::::::::::::
+
+To create a Criteria query, follow the below steps: -
+Create an object of CriteriaBuilder interface by invoking getCriteriaBuilder() method on 
+the instance of EntityManager interface.
+
+EntityManager em = emf.createEntityManager();  
+CriteriaBuilder cb=em.getCriteriaBuilder();  
+
+Now, 
+build an instance of CriteriaQuery interface to create a query object.
+
+CriteriaQuery<StudentEntity> cq = cb.createQuery(StudentEntity.class); 
+Call from method on CriteriaQuery object to set the query root.
+
+Root<StudentEntity> stud=cq.from(StudentEntity.class);  
+
+Now, 
+call the select method of CriteriaQuery Object to specify type of query result.
+CriteriaQuery<StudentEntity> select = cq.select(stud);  
+
+Create an instance of Query interface and specify the type of method used to access the database records
+
+Query q = em.createQuery(select);  
+Now, control the execution of query by calling the methods of Query Interface.
+
+List<StudentEntity> list = q.getResultList();  
+
+SOME CRITERIA METHOD:::::
+SELECT
+ORDER BY
+WHERE
+GROUP BY
+HAVING
+
+
+*****************JPA Inheritence Overview
+
+Inheritence is a key feature of object-oriented programming language in which a 
+child class can acquire the properties of its parent class. 
+This feature enhances reusability of the code.
+The relational database doesn't support the mechanism of inheritance. So, 
+Java Persistence API (JPA) is used to map the key features of inheritance in relational database model.
+
+
+*****************JPA Inheritence Annotations
+
+Following are the most frequently used JPA inheritance annotations: -
+
+@Inheritence - This annotation is applied on the root entity class to define the inheritance strategy. 
+If no strategy type is defined with this annotation then it follows single table strategy.
+
+@MappedSuperclass - This annotation is applied to the classes that are inherited by their subclasses. 
+The mapped superclass doesn't contain any separate table.
+
+@DiscriminatorColumn - The discriminator attribute differentiates one entity from another. 
+Thus, this annotation is used to provide the name of discriminator column. 
+It is required to specify this annotation on the root entity class only.
+
+@DiscriminatorValue - This annotation is used to specify the type of value that represents 
+the particular entity. 
+It is required to specify this annotation on the sub-entity classes.
+
+Note - If we didn't pass the name of discriminator column and its value then JPA consider it by default. 
+It considers DTYPE as discriminator column name and the name of the entity as discriminator value.
+
+
+*********************JPA Inheritence Strategies
+JPA provides three strategies through which we can easily persist inheritance in database.
+
+Single table strategy
+Joined strategy
+Table-per-class strategy
+
+
+**********************JPA Single Table Strategy
+
+The single table strategy is one of the most simplest 
+and efficient way to define the implementation of inheritance. 
+
+In this approach, 
+instances of the multiple entity classes are stored as attributes in a single table only.
+
+The following syntax represents the single table strategy
+: -
+
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)  
+Will generate One table only it will contain all the feilds
+
+@Inheritance(strategy=InheritanceType.Joined strategy) 
+will geneate all sepearte tables for each class
+
+@Inheritance(strategy=InheritanceType.Table-per-class strategy) 
+will combination table means if we have employee class which is going to extends 
+by two other class so it will create two table one with employye and first class and
+other with the second class.
+
+
+************QUESTION ON JPA**************
+
+
+1)What is jpa ??
+2)What is the difference between jpa and hibernate??
+------->
+				JPA                        HIBERNATE
+1)jpa descibes rules and api		1)Hibernate implements the description
+2)JPA defines the specification		2)Hibernate provides the additional features on top of jpa.
+
+
+
+3)Can I use JPA without Hibernate?
+--------->
+No, you cannot perform CRUD operations with JPA alone. 
+As JPA is just a specification, you need the implementation to perform database operations. 
+The implementations are provided by Hibernate, EclipseLink, Ibatis, etc.
+
+
+
+4)Can we use jpa with nosql database??
+--------->
+In general the jpa says mapping the java object into the relational databases 
+But there are so many implemenation for nosql database like kundera,datanuclues.
+
+
+5)What is the difference between jpa and jdo ??
+--------->
+Jpa and jdo are the two specification for storing the objects into the tables;
+If jpa is only concentrated on the relational database 
+then jdo is more general specification that describe orm for any possible bases and reposistory.
+In principle,The jpa is  view as part of the jdo specification specilised in relational database, 
+even though the api of this two does not exaclty matched.
+
+
+
+6)What is entity?????
+--------->
+entity is the lightweight perstitant domain object.
+the main program entity is the entity class 
+which can also additional classes that can be used 
+as auxilary classes or to maintain the state of the entity.
+
+
+7)can entity class inherit from the non entity class?
+------>
+can
+
+
+8)can entity class inherit from other entity classes?
+------->
+same can.
+
+
+
+9)can a non entity class inherit from other entity class?
+-------->
+And this is permissible.(BY LAW OF RULES = PERMISSIBLE)
+
+
+
+10)Why can an entity be an abstract class but not an interface?
+--------->
+ An abstract class allows you to create functionality that subclasses can implement or override. 
+ An interface only allows you to define functionality, not implement it. 
+And whereas a class can extend only one abstract class, 
+it can take advantage of multiple interfaces.
+
+
+
+11)What are the two types of elemets in entity classes or in other words 
+list two types of acces to the elements of the entity classes.
+--------->
+1)Property access
+2)Field access
+
+
+
+12)What are the attributes of the entity class in jpa terminology??
+--------->
+1)Property access
+2)Field access
+
+By this two types we can achieve elements of the entity class
+and both the type of elements are called as a attribute.
+
+
+
+
+13)what datatypes are allowed to the attributs of entity class??
+---------->
+primitive types ,java wrappers,string 
+and java seilizable type enums embedded class and collection types;
+
+
+
+14)what is embedded classes???
+----------->
+A embedded class is the class which is not used by itself,
+only as a part of one or more entity classes.
+An embedded class can contain one embedded class more classes like it
+also such classes used as keys or map values.At a run time,Each emnedded class belongs to only one 
+object of entity class and can not be used to transfer data between objects of the entity classes.
+
+
+
+15)can a embedded class contain antother embedded class??
+------->
+yes maybe
+
+
+
+16)can the embedded class contain relationship with other entity or entity collection ?
+If it can,are there any restriction on such relationship??
+-------->
+Maybe,but only is such classes is not used as primary key or the key value.
+
+
+
+17)What requirements does jpa set for embeddable classes?
+-------->
+such classes must statisfy the same rules as the entity classes,except classes,
+except that they do not have contain a primary key and be marked with entity annotation.
+Embedded class must be marked with embeddable annoation or 
+describe in the xml configuration file of the jpa.
+
+
+
+18)What is mapped superclass??
+--------->
+mapped superclass is class from which is inherited,it may 
+contain jpa annoations,however such a class is not entity
+it does not have to fulfill the all the requirements set for entity.
+such classes can not be used in entity manager and 
+so such class should be kept with the annotation mappedsuperclass
+
+
+
+19)What three types of inheritance mapping described in jpa??
+--------->
+Single table strategy
+Joined strategy
+Table-per-class strategy
+(var explain kele ahe)
+
+
+
+20)What is the entity manager and what are the its main function you can list??
+--------->
+
+You manage entity instances by invoking operations on the entity by means of an EntityManager instance.
+Entity instances are in one of four states: new, managed, detached, or removed.
+
+1)New entity instances have no persistent identity and are not yet associated with a persistence context.
+
+2)Managed entity instances have a persistent identity and are associated with a persistence context.
+
+3)Detached entity instances have a persistent identify and are not currently associated with a persistence context.
+
+4)Removed entity instances have a persistent identity, are associated with a persistent context, 
+and are scheduled for removal from the data store.
+
+
+
+21)How does the operation persist of entity objects of each the four statutes??
+---------->
+1)if the status entity is new it changes to managed the object will be saved to 
+database when a transcation is commited or as a reault of flush opeartion
+
+2)if the status is already managed,the opearation is ignored but 
+depenedat entity can change the staus to managed if there are annotation of cascading
+
+3)if the status is removed then it manages the changes
+
+4)if the status is detached then it changes to managed the exceptiuon will
+thrown at right away
+
+
+
+22)How does the detach operation affect the entity objects of each of the four statuses?
+----------->
+If A is a detached entity, its state is copied into existing managed instance A' of the same entity identity, 
+or a new managed copy of A is created. If A is a new entity, a new managed entity A' is created 
+and the state of A is copied into A' . If A is an existing managed entity, it is ignored.
+
+
+
+23)How does the refresh operation affect the entity object in managed state?
+------------>
+However, the refresh operation cascades as defined below. 
+If A is an existing MANAGED entity, its state is REFRESHED from the datastore. 
+If A is a REMOVED entity, it is IGNORED. If A is a DETACHED entity, an IllegalArgumentException is thrown.
+
+
+
+24)What is the basic annoation for??
+------------>
+@Basic annotation's optional attribute defines whether the entity field can be null or not
+
+
+25)Access annotation??
+------------>
+JPA provides @Access annotation for overriding the default behavior, by using AccessType. 
+FIELD and AccessType. PROPERTY. 
+If you set @Access on the class/entity level, 
+JPA accesses all properties of the class according to the selected strategy irrespective of place of Id/EmeddedId annotation.
+
+
+26)which annoation in jpa for caching??
+-------------->
+As the name implies, 
+@Cacheable is used to demarcate methods that are cacheable - that is, methods for whom the result is stored into the cache so on subsequent invocations (with the same arguments), 
+the value in the cache is returned without having to actually execute the method.

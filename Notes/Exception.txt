@@ -1,0 +1,303 @@
+Object class :::
+
+1)getclass():
+this method is to get metadata of a class
+
+2)toString():
+this method is to convert the object into the string form.
+
+3)Hashcode():
+this method is to get the a nyumber which is gnerated to specificy 
+the internal address of the object but no an address of an object
+
+if the object two are equal by .equals method 
+then thier hashcode will also same 
+if the object of two are equlas by hashcode method then 
+then they also be equal by the equlas method
+
+
+4)This keyword
+This is to used get the current class variable,method.
+super keyword is used to get the immediate parent class method and variable.
+
+						Throwable
+		Exception 																								Error
+	
+	IoException  ::::: It may occur due to the file deleted or viruses in the file
+																										1)StackOverflow ::::The java. lang. StackOverflowError indicates that the application stack is exhausted
+																										and is usually caused by deep or infinite recursion
+	SQLException ::::: SQLException occurs if there is an error in 
+	the database access or other errors related to the database.										2)VirtualMachine :::::::  It can happen for multiple reasons, ranging from simple permission issues and corrupt 
+																										installation to insufficient system memory issues
+	
+	ClassNotFoundException :::::: when an application tries to load a 
+	class through its fully-qualified name and can not find its definition on the classpath				3)OutOfMemory ::::::::OutOfMemoryError exception. Usually, this error is thrown when there is 
+																										insufficient space to allocate an object in the Java heap
+	
+	
+	RuntimeException
+	1)Arithmatic :::: When output will infinity
+	2)NullPointer :::: NullPointerException is thrown when program attempts to 
+	use an object reference that has the null value
+	
+	3)NumberFormat Exception :::::
+	The NumberFormatException is an unchecked exception in Java that occurs when an attempt is
+	made to convert a string with an incorrect format to a numeric value
+	
+	4)IndexOutOfBound
+	1)ArrayIOOE :::: when yoy put element accross its limit
+	2)SIOOE ::::: when you put the indesx accross its limit
+
+Chechked and Unchechecked
+
+checked Exception :::
+the exception directly inherited from the throwable 
+it is called as the checked and they are checked at the compile time
+
+unchecked Exception :::
+the exception which is indirectly inherit the throwable class called as unchecked exception
+and it is checked at the runtime
+
+checked type 
+fully checked ::::: the fully checked exception will be when parent and child both have checked exception
+
+partially checked ::::::
+the partially checked exception will be when the parent or child have checked and unchecked and vice-versa.
+
+possible way to use try and catch
+
+only try is not possible without catch or finally
+
+1)try
+{}
+finally{}
+
+2)try{}
+catch{}
+
+3)try{}
+catch{}
+finally{}
+
+4)try{}
+catch(Exception e){}
+catch(ArithmaticException){}
+NOT POSSIBLE BECAUSE BIGGER EXCEPTION IS NOT POSSIBLE AT THE FIRST
+
+
+finally block ::::::::::
+it is alwasy excetuted or we can say it is used to have a clean up code inside the block.
+whatever the code is there will always gets excuted 
+why we always use this code because we cant put this 
+clean up code insdie the try block and also in catch block its 
+not necessary that it will always catch the exception
+
+
+if there is exception in catch block finally block will be exceuted but if there
+is exception in a finally block then catch block will not exceutued
+
+
+getMessage() - description
+toString() - Name of the exception and description
+printStackTrace() - name,description and stack trace
+
+
+
+Throw and Throws ::::::
+
+throw is used for our own custome exception 
+after throw statement we cant reach any statement beacuse it will unreachabel
+
+
+throws :::::::
+have to use on the method level
+it is only a declaratin so it will not handeled the exception 
+u must have to used the try and catch block
+
+
+Case Valid/Invalid
+
+1)Parent:publicvoidmethodOne()throwsException Valid
+Child :publicvoidmethodOne()
+
+2)Parent:publicvoidmethodOne() Invalid
+Child :publicvoidmethodOne()throwsException
+
+3)Parent:publicvoidmethodOne()throwsException Valid
+Child :publicvoidmethodOne()throwsException
+
+4)Parent:publicvoidmethodOne()throwsIOException Invalid
+Child :publicvoidmethodOne()throwsException
+
+5)Parent:publicvoidmethodOne()throwsIOException Valid
+Child :publicvoidmethodOne()throwsEOFException,FileNotFoundException
+
+6)Parent:publicvoidmethodOne()throwsIOException Invalid
+Child :publicvoidmethodOne()throwsEOFException,InterueptedException
+
+7)Parent:publicvoidmethodOne()throwsIOException Valid
+Child :publicvoidmethodOne()throwsEOFException,ArithematicException
+
+8)Parent:publicvoidmethodOne() Valid
+Child :publicvoidmethodOne()throwsNulPointerException,
+ArithematicException,RuntimeException
+
+						TRY WITH RESOURCES
+In Java, the Try-with-resources statement is a try statement that declares one or more resources in it.
+A resource is an object that must be closed once your program is done using it. 
+For example, a File resource or a Socket connection resource.  
+The try-with-resources statement ensures that each resource is closed at the end of the statement execution. 
+If we don’t close the resources, it may constitute a resource leak and also 
+the program could exhaust the resources available to it.
+You can pass any object as a resource that implements java.lang.AutoCloseable, 
+which includes all objects which implement java.io.Closeable.
+By this, now we don’t need to add an extra finally block for just passing the closing statements 
+of the resources. The resources will be closed as soon as the try-catch block is executed. 
+
+SYNTAX :::::::::::
+
+try(declare resources here) {
+    // use resources
+}
+catch(FileNotFoundException e) {
+    // exception handling
+}
+
+
+Exceptions:::::::
+
+When it comes to exceptions, there is a difference in try-catch-finally block and try-with-resources block. If an exception is thrown in both try block and finally block, the method returns the exception thrown in finally block.
+
+For try-with-resources, if an exception is thrown in a try block and in a try-with-resources statement, then the method returns the exception thrown in the try block. The exceptions thrown by try-with-resources are suppressed, i.e. we can say that try-with-resources block throws suppressed exceptions.
+
+Now, let us discuss both the possible scenarios which are demonstrated below as an example as follows:
+
+Case 1: Single resource
+Case 2: Multiple resources
+
+Example 1: try-with-resources having a single resource
+
+// Java Program for try-with-resources
+// having single resource
+
+// Importing all input output classes
+import java.io.*;
+
+// Class
+class GFG {
+
+	// Main driver method
+	public static void main(String[] args)
+	{
+		// Try block to check for exceptions
+		try (
+
+			// Creating an object of FileOutputStream
+			// to write stream or raw data
+
+			// Adding resource
+			FileOutputStream fos
+			= new FileOutputStream("gfgtextfile.txt")) {
+
+			// Custom string input
+			String text
+				= "Hello World. This is my java program";
+
+			// Converting string to bytes
+			byte arr[] = text.getBytes();
+
+			// Text written in the file
+			fos.write(arr);
+		}
+
+		// Catch block to handle exceptions
+		catch (Exception e) {
+
+			// Display message for the occurred exception
+			System.out.println(e);
+		}
+
+		// Display message for successful execution of
+		// program
+		System.out.println(
+			"Resource are closed and message has been written into the gfgtextfile.txt");
+	}
+}
+
+OUTPUT  :::::::::
+Resource are closed and message has been written into the gfgtextfile.txt
+
+
+
+
+Example 2: try-with-resources having multiple resources
+
+// Java program for try-with-resources
+// having multiple resources
+
+// Importing all input output classes
+import java.io.*;
+
+// Class
+class GFG {
+
+	// Main driver method
+	public static void main(String[] args)
+	{
+		// Try block to check for exceptions
+
+		// Writing data to a file using FileOutputStream
+		// by passing input file as a parameter
+		try (FileOutputStream fos
+			= new FileOutputStream("outputfile.txt");
+
+			// Adding resource
+
+			// Reading the stream of character from
+			BufferedReader br = new BufferedReader(
+				new FileReader("gfgtextfile.txt"))) {
+
+			// Declaring a string holding the
+			// stream content of the file
+			String text;
+
+			// Condition check using readLine() method
+			// which holds true till there is content
+			// in the input file
+			while ((text = br.readLine()) != null) {
+
+				// Reading from input file passed above
+				// using getBytes() method
+				byte arr[] = text.getBytes();
+
+				// String converted to bytes
+				fos.write(arr);
+
+				// Copying the content of passed input file
+				// 'inputgfgtext' file to outputfile.txt
+			}
+
+			// Display message when
+			// file is successfully copied
+			System.out.println(
+				"File content copied to another one.");
+		}
+
+		// Catch block to handle generic exceptions
+		catch (Exception e) {
+
+			// Display the exception on the
+			// console window
+			System.out.println(e);
+		}
+
+		// Display message for successful execution of the
+		// program
+		System.out.println(
+			"Resource are closed and message has been written into the gfgtextfile.txt");
+	}
+}
+
+OUTPUT ::::::
+File content copied to another one.
+Resource are closed and message has been written into the gfgtextfile.txt

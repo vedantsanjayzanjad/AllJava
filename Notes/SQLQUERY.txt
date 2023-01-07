@@ -1,0 +1,146 @@
+All SQL QUERY :::
+
+1)Distinct
+SELECT DISTINCT Country FROM Customers;
+SELECT COUNT(DISTINCT Country) FROM Customers;
+
+2)And Not Or
+
+select emp_name from employee where emp_id >= 3 and emp_city = "amravati";
+select emp_name from employee where emp_id >= 2 or emp_city = "nanded";
+select emp_name from employee where not emp_city = "shegaon"
+select * from employee where emp_city = "shegaon" and (emp_gender = "male" or emp_gender="female");
+select * from employee where not emp_city = "shegaon" and not (emp_gender = "male" or emp_gender="female");
+
+
+
+3)Order by
+
+select * from employee order by emp_salary asc; 
+if u not mention asc and desc it will consider asc.
+select * from employee order by emp_salary desc;
+select * from employee order by emp_salary, emp_name;
+first followed the emp_salary but any data ius common then it will foloow the emp_name;
+select * from employee order by emp_salary desc, emp_name desc;
+
+
+4)Null or Not Null
+
+select * from employee where emp_status is null;
+
+select * from employee where emp_status is not null;
+
+
+5)Update
+update employee set emp_status =null, emp_name = "Nobody" where emp_id=10;
+
+6)delete
+delete from employee where emp_name = "sachin";
+delete from employee where emp_id = 10;
+
+7)Limit
+select * from employee limit 3;
+First Three record
+
+select * from employee where emp_city ="pune" limit 2;
+First three record of the pune city
+
+Aggregate Function
+
+8)Max and Min
+select max(emp_salary) from employee;
+select min(emp_salary) from employee;
+select max(emp_salary) from employee where emp_city = "Pune";
+select min(emp_salary) from employee where emp_city<>"nanded"; not equal <>
+
+9)Count
+select count(emp_salary) from employee where emp_city = "pune";
+
+10)Average
+select avg(emp_salary) from employee where emp_city = "pune";
+
+11)Sum
+select sum(emp_salary) from employee where emp_city = "pune";
+
+
+12)Like
+select * from employee where emp_name like "v%"; 
+will give all info where emp_name starts with v
+
+select * from employee where emp_name like "%v";
+will give all info where emp_name ends with v
+
+select * from employee where emp_name like "%k%";
+will return name starts with or ends with k
+
+
+select * from employee where emp_name like "_e%";
+will return all where e is second position on name
+
+
+select * from employee where emp_name like "a__%"
+that starts with "a" and are at least 3 characters in length:
+
+select * from employee where emp_name like "a%a";
+start with a and end with a
+ 
+select * from employee where emp_name not like "k%_";
+will not starts with k
+
+13)
+A wildcard character is used to substitute one or more characters in a string.
+Wildcard characters are used with the LIKE operator. 
+The LIKE operator is used in a WHERE clause to search for a specified pattern in a column.
+
+select * from employee where emp_city like "pu%"; 
+it will retruns all city name which starts from pu.
+
+
+select * from employee where emp_city like "%pu%";
+it will return the pattern like pu.
+
+
+select * from employee where emp_city like "_une";
+it will return the pattern une 
+
+
+14)
+The MySQL IN Operator
+The IN operator allows you to specify multiple values in a WHERE clause.
+The IN operator is a shorthand for multiple OR conditions.
+
+select * from employee where emp_city in ('pune','amravati','nanded');
+will retrun belonging to the special categories
+
+select * from employee where emp_city not in ('pune','amravati','nanded');
+will not retrun belonging to the special categories
+
+SELECT * FROM Customers
+WHERE Country IN (SELECT Country FROM Suppliers);
+
+15)Between
+select * from employee where emp_salary between 1000 and 2000;
+will return all employee between that salary
+
+
+select * from employee where emp_salary between 1000 and 2000;
+will return not between 1000 and 200
+
+select * from employee where emp_salary between 1000 and 2000 and emp_id not in (7,9);
+will return 1000 and 2000 and not in id 7,9
+
+
+select * from employee where emp_id between  4 and 8 order by emp_id;
+will show employee from 4 to 8
+
+select * from employee where emp_id not between  4 and 8 order by emp_id;
+will no tshow employee between 4 to 8
+
+16)Aliases
+select emp_id as id,emp_name as name,emp_city as city,emp_gender as gender,emp_status as status from employee;
+will give temperory name to the column
+
+select emp_id as id, concat_ws(',',emp_city,emp_gender,emp_status) as address from employee;
+will return concated columns
+
+

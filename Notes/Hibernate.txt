@@ -1,0 +1,1154 @@
+***********Hibernate**********
+It was started in 2001 by Gavin King as an alternative to EJB2 style entity bean.
+
+***********Hibernate Framework
+
+Hibernate is a Java framework that simplifies the development of Java application to interact with the database. 
+***It is an open source, lightweight, ORM (Object Relational Mapping) tool. ***
+Hibernate implements the specifications of JPA (Java Persistence API) for data persistence.
+
+**********ORM Tool*************
+
+An ORM tool simplifies the data creation, data manipulation and data access. 
+It is a programming technique that maps the object to the data stored in the database.
+The ORM tool internally uses the JDBC API to interact with the database.
+
+******Advantages of Hibernate Framework
+Following are the advantages of hibernate framework:
+
+1) Open Source and Lightweight
+Hibernate framework is open source under the LGPL license and lightweight.
+
+2) Fast Performance
+The performance of hibernate framework is fast because cache is internally used in hibernate framework. 
+There are two types of cache in hibernate framework first level cache and second level cache. 
+First level cache is enabled by default.
+
+3) Database Independent Query
+HQL (Hibernate Query Language) is the object-oriented version of SQL.
+ It generates the database independent queries. 
+ So you don't need to write database specific queries. 
+ Before Hibernate, if database is changed for the project, 
+ we need to change the SQL query as well that leads to the maintenance problem.
+
+4)Automatic Table Creation
+Hibernate framework provides the facility to create the tables of the database automatically. 
+So there is no need to create tables in the database manually.
+
+5)Simplifies Complex Join
+Fetching data from multiple tables is easy in hibernate framework.
+
+6)Provides Query Statistics and Database Status
+Hibernate supports Query cache and provide statistics about query and database status.
+
+
+********Hibernate architecture
+
+1)The Hibernate architecture includes many objects such as 
+persistent object, session factory, transaction factory, connection factory, session, transaction etc.
+
+2)The Hibernate architecture is categorized in four layers.
+Java application layer
+Hibernate framework layer
+Backhand api layer
+Database layers 
+
+3)Hibernate framework uses many objects such as 
+session factory, session, transaction etc. alongwith existing Java API 
+such as JDBC (Java Database Connectivity), JTA (Java Transaction API) and 
+JNDI (Java Naming Directory Interface).
+
+
+**********Elements of Hibernate Architecture
+
+For creating the first hibernate application, we must know the elements of Hibernate architecture. 
+They are as follows:
+
+SessionFactory :::::::
+The SessionFactory is a factory of session and client of ConnectionProvider. 
+It holds second level cache (optional) of data. 
+The org.hibernate.SessionFactory interface provides factory method to get the object of Session.
+
+Session :::::::::::::
+The session object provides an interface between the application and data stored in the database. 
+It is a short-lived object and wraps the JDBC connection. 
+It is factory of Transaction, Query and Criteria. It holds a first-level cache (mandatory) of data.
+The org.hibernate.Session interface provides methods to insert, update and delete the object. 
+It also provides factory methods for Transaction, Query and Criteria.
+
+Transaction ::::::::::
+The transaction object specifies the atomic unit of work. 
+It is optional. 
+The org.hibernate.Transaction interface provides methods for transaction management.
+
+ConnectionProvider ::::::::::::
+It is a factory of JDBC connections. 
+It abstracts the application from DriverManager or DataSource. 
+It is optional.
+
+TransactionFactory ::::::::::::
+It is a factory of Transaction. It is optional.
+
+
+**************Generator classes in Hibernate
+
+The <generator> class is a sub-element of id.
+It is used to generate the unique identifier
+for the objects of persistent class. There are many generator classes defined in the Hibernate Framework.
+
+
+All the generator classes implements
+the org.hibernate.id.IdentifierGenerator interface. 
+The application programmer may create one's own generator classes by 
+implementing the IdentifierGenerator interface. 
+
+Hibernate framework provides many built-in generator classes:
+
+assigned
+increment
+sequence
+hilo
+native
+identity
+seqhilo
+uuid
+guid
+select
+foreign
+sequence-identity
+
+1) assigned
+It is the default generator strategy if there is no <generator> element.
+In this case, application assigns the id. For example:
+
+....  
+ <hibernate-mapping>  
+  <class ...>  
+    <id ...>  
+     <generator class="assigned"></generator>  
+    </id>  
+            
+    .....  
+            
+  </class>  
+ </hibernate-mapping>  
+ 
+2) increment
+It generates the unique id only if no other process is inserting data into this table. It generates short, int or long type identifier. If a table contains an identifier then the application considers its maximum value else the application consider that the first generated identifier is 1. For each attribute value, the hibernate increment the identifier by 1. Syntax:
+
+
+
+....  
+ <hibernate-mapping>  
+  <class ...>  
+    <id ...>  
+     <generator class="increment"></generator>  
+    </id>  
+            
+    .....  
+            
+  </class>  
+ </hibernate-mapping>  
+ 
+3) sequence
+It uses the sequence of the database. if there is no sequence defined, it creates a sequence automatically e.g. in case of Oracle database, it creates a sequence named HIBERNATE_SEQUENCE. In case of Oracle, 
+DB2, SAP DB, Postgre SQL or McKoi, it uses sequence but it uses generator in interbase. Syntax:
+
+.....  
+ <id ...>  
+  <generator class="sequence"></generator>  
+ </id>  
+ .....  
+For defining your own sequence, use the param subelement of generator.
+
+.....  
+ <id ...>  
+  <generator class="sequence">  
+      <param name="sequence">your_sequence_name</param>  
+  </generator>  
+ </id>  
+ 
+ .....  
+ 
+4) hilo
+It uses high and low algorithm to generate the id of type short, int and long. Syntax:
+
+.....  
+ <id ...>  
+  <generator class="hilo"></generator>  
+ </id>  
+ .....  
+ 
+5) native
+It uses identity, sequence or hilo depending on the database vendor. Syntax:
+
+.....  
+ <id ...>  
+  <generator class="native"></generator>  
+ </id>  
+ .....  
+ 
+6) identity
+It is used in Sybase, My SQL, MS SQL Server, DB2 and HypersonicSQL to support the id column. 
+The returned id is of type short, int or long. 
+It is responsibility of database to generate unique identifier.
+
+
+*****SQL Dialects in Hibernate
+
+The dialect specifies the type of database used in hibernate 
+so that hibernate generate appropriate type of SQL statements. 
+For connecting any hibernate application with the database, 
+it is required to provide the configuration of SQL dialect.
+
+********Hibernate Logging by Log4j using xml file
+Logging enables the programmer to write the log details into a file permanently. 
+Log4j and Logback frameworks can be used in hibernate framework to support logging.
+
+There are two ways to perform logging using log4j:
+By log4j.xml file (or)
+By log4j.properties file
+Levels of Logging
+Following are the common logging levels.
+
+Levels	Description
+
+OFF	:: This level is used to turn off logging.
+WARNING	:: This is a message level that indicates a problem.
+SEVERE ::	This is a message level that indicates a failure.
+INFO	:: This level is used for informational messages.
+CONFIG	:: This level is used for static configuration messages.
+
+Steps to perform Hibernate Logging by Log4j using xml file::::::::
+
+***There are two ways to perform logging using log4j using xml file:
+
+Load the log4j jar files with hibernate
+Create the log4j.xml file inside the src folder (parallel with hibernate.cfg.xml file)
+
+***Hibernate Logging by Log4j using properties file
+
+As we know, Log4j and Logback frameworks are used to 
+support logging in hibernate, there are two ways to perform logging using log4j:
+
+By log4j.xml file (or)
+By log4j.properties file
+
+***Steps to perform Hibernate Logging by Log4j using properties file
+
+There are two ways to perform logging using log4j using properties file:
+
+Load the log4j jar files with hibernate
+Create the log4j.properties file inside the src folder (parallel with hibernate.cfg.xml file)
+
+***Hibernate Inheritance Mapping Tutorial
+
+We can map the inheritance hierarchy classes with the table of the database. 
+There are three inheritance mapping strategies defined in the hibernate:
+
+1)Table Per Hierarchy
+2)Table Per Concrete class
+3)Table Per Subclass
+
+***Table Per Hierarchy::
+
+In table per hierarchy mapping,
+single table is required to map the whole hierarchy,
+an extra column (known as **discriminator column**) is added to identify the class. 
+But nullable values are stored in the table .
+
+1)Table Per Hierarchy using xml file
+2)Table Per Hierarchy using Annotation ::
+
+In case of table per hierarchy, only one table is required to map the inheritance hierarchy. 
+Here, an extra column (also known as discriminator column) is created in the table to identify the class.
+
+Let's see the inheritance hierarchy:
+
+table per class hierarchy using annotation
+There are three classes in this hierarchy. 
+Employee is the super class for Regular_Employee and Contract_Employee classes.
+
+Create the configuration file
+Create the class to store the fetch the data
+
+1)Create the Persistent classes
+You need to create the persistent classes representing the 
+inheritance. Let's create the three classes for the above hierarchy:
+
+File: Employee.java
+package com.javatpoint.mypackage;  
+import javax.persistence.*;  
+  
+@Entity  
+@Table(name = "employee101")  
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)  
+@DiscriminatorColumn(name="type",discriminatorType=DiscriminatorType.STRING)  
+@DiscriminatorValue(value="employee")  
+  
+public class Employee {  
+@Id  
+@GeneratedValue(strategy=GenerationType.AUTO)  
+      
+@Column(name = "id")  
+private int id;  
+  
+@Column(name = "name")  
+private String name;  
+  
+//setters and getters  
+}  
+
+
+File: Regular_Employee.java
+package com.javatpoint.mypackage;  
+  
+import javax.persistence.*;  
+  
+@Entity  
+@DiscriminatorValue("regularemployee")  
+public class Regular_Employee extends Employee{  
+      
+@Column(name="salary")    
+private float salary;  
+  
+@Column(name="bonus")     
+private int bonus;  
+  
+//setters and getters  
+}  
+
+
+
+File: Contract_Employee.java
+package com.javatpoint.mypackage;  
+  
+import javax.persistence.Column;  
+import javax.persistence.DiscriminatorValue;  
+import javax.persistence.Entity;  
+  
+@Entity  
+@DiscriminatorValue("contractemployee")  
+public class Contract_Employee extends Employee{  
+      
+    @Column(name="pay_per_hour")  
+    private float pay_per_hour;  
+      
+    @Column(name="contract_duration")  
+    private String contract_duration;  
+  
+    //setters and getters  
+}  
+
+
+2) Add project information and configuration in pom.xml file.
+Open pom.xml file and click source. Now, add the below dependencies
+between <dependencies>....</dependencies> tag.
+
+<dependency>  
+    <groupId>org.hibernate</groupId>  
+    <artifactId>hibernate-core</artifactId>  
+    <version>5.3.1.Final</version>  
+</dependency>  
+      
+<dependency>  
+    <groupId>com.oracle</groupId>  
+    <artifactId>ojdbc14</artifactId>  
+    <version>10.2.0.4.0</version>  
+</dependency>  
+3) Add the persistent classes in configuration file
+Open the hibernate.cgf.xml file, and add entries of entity classes like this:
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE hibernate-configuration PUBLIC  
+        "-//Hibernate/Hibernate Configuration DTD 5.3//EN"  
+        "http://www.hibernate.org/dtd/hibernate-configuration-5.3.dtd">  
+<hibernate-configuration>  
+    <session-factory>  
+            
+    <property name="hbm2ddl.auto">update</property>    
+        <property name="dialect">org.hibernate.dialect.Oracle9Dialect</property>    
+        <property name="connection.url">jdbc:oracle:thin:@localhost:1521:xe</property>    
+        <property name="connection.username">system</property>    
+        <property name="connection.password">jtp</property>    
+        <property name="connection.driver_class">oracle.jdbc.driver.OracleDriver</property>   
+       
+        <mapping class="com.javatpoint.mypackage.Employee"/>  
+        <mapping class="com.javatpoint.mypackage.Regular_Employee"/>  
+        <mapping class="com.javatpoint.mypackage.Contract_Employee"/>  
+          
+    </session-factory>  
+</hibernate-configuration>  
+The hbm2ddl.auto property is defined for creating automatic table in the database.
+
+
+
+4) Create the class that stores the persistent object
+In this class, we are simply storing the employee objects in the database.
+
+File: StoreTest.java
+package com.javatpoint.mypackage;  
+import org.hibernate.Session;  
+import org.hibernate.SessionFactory;  
+import org.hibernate.Transaction;  
+import org.hibernate.boot.Metadata;  
+import org.hibernate.boot.MetadataSources;  
+import org.hibernate.boot.registry.StandardServiceRegistry;  
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;  
+  
+public class StoreTest {  
+  
+    public static void main(String args[])  
+    {  
+        StandardServiceRegistry ssr = 
+		new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();  
+		
+        Metadata meta = new MetadataSources(ssr).getMetadataBuilder().build();  
+		
+        SessionFactory factory=meta.getSessionFactoryBuilder().build();  
+		
+        Session session=factory.openSession();  
+        Transaction t = session.beginTransaction();    
+		Employee e1=new Employee();    
+		e1.setName("Gaurav Chawla");    
+		Regular_Employee e2=new Regular_Employee();    
+		e2.setName("Vivek Kumar");    
+		e2.setSalary(50000);    
+		e2.setBonus(5);   
+		
+		Contract_Employee e3=new Contract_Employee();    
+		e3.setName("Arjun Kumar");    
+		e3.setPay_per_hour(1000);    
+		e3.setContract_duration("15 hours");    
+		
+		session.persist(e1);    
+		session.persist(e2);    
+		session.persist(e3);    
+		
+		t.commit();    
+		session.close();    
+		System.out.println("success");        
+    }  
+}  
+
+
+
+***Table Per Concrete class
+
+In case of table per concrete class, tables are created as per class. 
+But duplicate column is added in subclass tables.
+
+
+1)Table Per Concrete class using xml file
+
+2)Table Per Concrete class using Annotation:
+
+In case of Table Per Concrete class, tables are created per class.
+So there are no nullable values in the table. 
+
+Disadvantage of this approach is that duplicate columns are created in the subclass tables.
+Here, we need to use @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+annotation in the parent class and @AttributeOverrides annotation in the subclasses. 
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS) specifies that we are using table per 
+concrete class strategy. 
+It should be specified in the parent class only.
+@AttributeOverrides defines that parent class attributes will be overriden in this class. 
+In table structure, parent class table columns will be added in the subclass table.
+
+Example of Table per concrete class
+In this example we are creating the three classes and provide mapping of these classes in the employee.hbm.xml file.
+
+1) Create the Persistent classes
+You need to create the persistent classes representing the inheritance. Let's create the three classes for the above hierarchy:
+
+File: Employee.java
+package com.javatpoint.mypackage;  
+import javax.persistence.*;  
+  
+@Entity  
+@Table(name = "employee102")  
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)  
+  
+public class Employee {  
+@Id  
+@GeneratedValue(strategy=GenerationType.AUTO)  
+      
+@Column(name = "id")  
+private int id;  
+  
+@Column(name = "name")  
+private String name;  
+  
+//setters and getters  
+}  
+
+
+File: Regular_Employee.java
+package com.javatpoint.mypackage;  
+import javax.persistence.*;  
+  
+@Entity  
+@Table(name="regularemployee102")  
+@AttributeOverrides({  
+    @AttributeOverride(name="id", column=@Column(name="id")),  
+    @AttributeOverride(name="name", column=@Column(name="name"))  
+})  
+public class Regular_Employee extends Employee{  
+      
+@Column(name="salary")    
+private float salary;  
+  
+@Column(name="bonus")     
+private int bonus;  
+  
+//setters and getters  
+}  
+
+
+File: Contract_Employee.java
+package com.javatpoint.mypackage;  
+import javax.persistence.*;  
+@Entity  
+@Table(name="contractemployee102")  
+@AttributeOverrides({  
+    @AttributeOverride(name="id", column=@Column(name="id")),  
+    @AttributeOverride(name="name", column=@Column(name="name"))  
+})  
+public class Contract_Employee extends Employee{  
+      
+    @Column(name="pay_per_hour")  
+    private float pay_per_hour;  
+      
+    @Column(name="contract_duration")  
+    private String contract_duration;  
+  
+    public float getPay_per_hour() {  
+        return pay_per_hour;  
+    }  
+    public void setPay_per_hour(float payPerHour) {  
+        pay_per_hour = payPerHour;  
+    }  
+    public String getContract_duration() {  
+        return contract_duration;  
+    }  
+    public void setContract_duration(String contractDuration) {  
+        contract_duration = contractDuration;  
+    }  
+}  
+
+2) Add project information and configuration in pom.xml file.
+Open pom.xml file and click source. Now, add the below dependencies between <dependencies>....</dependencies> tag.
+
+<dependency>  
+    <groupId>org.hibernate</groupId>  
+    <artifactId>hibernate-core</artifactId>  
+    <version>5.3.1.Final</version>  
+</dependency>  
+      
+<dependency>  
+    <groupId>com.oracle</groupId>  
+    <artifactId>ojdbc14</artifactId>  
+    <version>10.2.0.4.0</version>  
+</dependency>  
+3) Add mapping of hbm file in configuration file
+File: hibernate.cfg.xml
+<?xml version='1.0' encoding='UTF-8'?>  
+<!DOCTYPE hibernate-configuration PUBLIC  
+          "-//Hibernate/Hibernate Configuration DTD 5.3//EN"  
+          "http://hibernate.sourceforge.net/hibernate-configuration-5.3.dtd">  
+  
+<!-- Generated by MyEclipse Hibernate Tools.                   -->  
+<hibernate-configuration>  
+    <session-factory>  
+        <property name="hbm2ddl.auto">update</property>  
+        <property name="dialect">org.hibernate.dialect.Oracle9Dialect</property>  
+        <property name="connection.url">jdbc:oracle:thin:@localhost:1521:xe</property>  
+        <property name="connection.username">system</property>  
+        <property name="connection.password">jtp</property>  
+<property name="connection.driver_class">oracle.jdbc.driver.OracleDriver</property>  
+          
+        <mapping class="com.javatpoint.mypackage.Employee"/>  
+        <mapping class="com.javatpoint.mypackage.Contract_Employee"/>  
+        <mapping class="com.javatpoint.mypackage.Regular_Employee"/>  
+    </session-factory>  
+</hibernate-configuration>  
+The hbm2ddl.auto property is defined for creating automatic table in the database.
+
+4) Create the class that stores the persistent object
+In this class, we are simply storing the employee objects in the database.
+
+File: StoreData.java
+package com.javatpoint.mypackage;  
+  
+import org.hibernate.Session;  
+import org.hibernate.SessionFactory;  
+import org.hibernate.Transaction;  
+import org.hibernate.boot.Metadata;  
+import org.hibernate.boot.MetadataSources;  
+import org.hibernate.boot.registry.StandardServiceRegistry;  
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;  
+  
+public class StoreData {  
+   
+    public static void main(String[] args) {  
+      
+        StandardServiceRegistry ssr=new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();  
+        Metadata meta=new MetadataSources(ssr).getMetadataBuilder().build();  
+          
+        SessionFactory factory=meta.getSessionFactoryBuilder().build();  
+        Session session=factory.openSession();  
+          
+        Transaction t=session.beginTransaction();  
+          
+        Employee e1=new Employee();  
+        e1.setName("Gaurav Chawla");  
+          
+        Regular_Employee e2=new Regular_Employee();  
+        e2.setName("Vivek Kumar");  
+        e2.setSalary(50000);  
+        e2.setBonus(5);  
+          
+        Contract_Employee e3=new Contract_Employee();  
+        e3.setName("Arjun Kumar");  
+        e3.setPay_per_hour(1000);  
+        e3.setContract_duration("15 hours");  
+          
+        session.persist(e1);  
+        session.persist(e2);  
+        session.persist(e3);  
+          
+        t.commit();  
+        session.close();  
+        System.out.println("success");        
+    }  
+}  
+
+
+
+***Table Per Subclass
+In this strategy, tables are created as per class but related by foreign key.
+So there are no duplicate columns.
+1)Table Per Subclass using xml file.
+
+2)Table Per Subclass using Annotation
+
+As we have specified earlier, in case of table per subclass strategy, 
+tables are created as per persistent classes but they are treated using primary and foreign key. 
+So there will not be any duplicate column in the relation.
+We need to specify @Inheritance(strategy=InheritanceType.JOINED) in the parent class and @PrimaryKeyJoinColumn annotation in the subclasses.
+Let's see the hierarchy of classes that we are going to map.
+Example of Table per subclass class using Annotation
+In this example we are creating the three classes and provide mapping of these classes in the employee.hbm.xml file.
+
+1) Create the Persistent classes
+You need to create the persistent classes representing the inheritance. Let's create the three classes for the above hierarchy:
+
+File: Employee.java
+package com.javatpoint.mypackage;  
+import javax.persistence.*;  
+  
+@Entity  
+@Table(name = "employee103")  
+@Inheritance(strategy=InheritanceType.JOINED)  
+  
+public class Employee {  
+@Id  
+@GeneratedValue(strategy=GenerationType.AUTO)  
+      
+@Column(name = "id")  
+private int id;  
+  
+@Column(name = "name")  
+private String name;  
+  
+//setters and getters  
+}  
+File: Regular_Employee.java
+package com.javatpoint.mypackage;  
+  
+import javax.persistence.*;  
+  
+@Entity  
+@Table(name="regularemployee103")  
+@PrimaryKeyJoinColumn(name="ID")  
+public class Regular_Employee extends Employee{  
+      
+@Column(name="salary")    
+private float salary;  
+  
+@Column(name="bonus")     
+private int bonus;  
+  
+//setters and getters  
+}  
+File: Contract_Employee.java
+package com.javatpoint.mypackage;  
+  
+import javax.persistence.*;  
+  
+@Entity  
+@Table(name="contractemployee103")  
+@PrimaryKeyJoinColumn(name="ID")  
+public class Contract_Employee extends Employee{  
+      
+    @Column(name="pay_per_hour")  
+    private float pay_per_hour;  
+      
+    @Column(name="contract_duration")  
+    private String contract_duration;  
+  
+    //setters and getters  
+}  
+
+2) Add project information and configuration in pom.xml file.
+Open pom.xml file and click source. Now, add the below dependencies between <dependencies>....</dependencies> tag.
+
+<dependency>  
+    <groupId>org.hibernate</groupId>  
+    <artifactId>hibernate-core</artifactId>  
+    <version>5.3.1.Final</version>  
+</dependency>  
+      
+<dependency>  
+    <groupId>com.oracle</groupId>  
+    <artifactId>ojdbc14</artifactId>  
+    <version>10.2.0.4.0</version>  
+</dependency>  
+
+3)Create the configuration file
+Open the hibernate.cgf.xml file, and add an entry of mapping resource like this:
+
+<mapping class="com.javatpoint.mypackage.Employee"/>  
+<mapping class="com.javatpoint.mypackage.Contract_Employee"/>  
+<mapping class="com.javatpoint.mypackage.Regular_Employee"/>  
+Now the configuration file will look like this:
+
+File: hibernate.cfg.xml
+<?xml version='1.0' encoding='UTF-8'?>  
+<!DOCTYPE hibernate-configuration PUBLIC  
+          "-//Hibernate/Hibernate Configuration DTD 5.3//EN"  
+          "http://hibernate.sourceforge.net/hibernate-configuration-5.3.dtd">  
+  
+<!-- Generated by MyEclipse Hibernate Tools.                   -->  
+<hibernate-configuration>  
+  
+    <session-factory>  
+        <property name="hbm2ddl.auto">update</property>  
+        <property name="dialect">org.hibernate.dialect.Oracle9Dialect</property>  
+        <property name="connection.url">jdbc:oracle:thin:@localhost:1521:xe</property>  
+        <property name="connection.username">system</property>  
+        <property name="connection.password">jtp</property>  
+<property name="connection.driver_class">oracle.jdbc.driver.OracleDriver</property>  
+          
+        <mapping class="com.javatpoint.mypackage.Employee"/>  
+        <mapping class="com.javatpoint.mypackage.Contract_Employee"/>  
+        <mapping class="com.javatpoint.mypackage.Regular_Employee"/>  
+    </session-factory>  
+  
+</hibernate-configuration>  
+The hbm2ddl.auto property is defined for creating automatic table in the database.
+
+3) Create the class that stores the persistent object
+In this class, we are simply storing the employee objects in the database.
+
+File: StoreData.java
+package com.javatpoint.mypackage;  
+  
+import org.hibernate.Session;  
+import org.hibernate.SessionFactory;  
+import org.hibernate.Transaction;  
+import org.hibernate.boot.Metadata;  
+import org.hibernate.boot.MetadataSources;  
+import org.hibernate.boot.registry.StandardServiceRegistry;  
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;  
+  
+public class StoreData {  
+  
+    public static void main(String args[])  
+    {  
+        StandardServiceRegistry ssr = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();  
+        Metadata meta = new MetadataSources(ssr).getMetadataBuilder().build();  
+          
+        SessionFactory factory=meta.getSessionFactoryBuilder().build();  
+        Session session=factory.openSession();  
+          
+         Transaction t=session.beginTransaction();    
+            
+            Employee e1=new Employee();    
+            e1.setName("Gaurav Chawla");    
+                
+            Regular_Employee e2=new Regular_Employee();    
+            e2.setName("Vivek Kumar");    
+            e2.setSalary(50000);    
+            e2.setBonus(5);    
+                
+            Contract_Employee e3=new Contract_Employee();    
+            e3.setName("Arjun Kumar");    
+            e3.setPay_per_hour(1000);    
+            e3.setContract_duration("15 hours");    
+                
+            session.persist(e1);    
+            session.persist(e2);    
+            session.persist(e3);    
+                
+            t.commit();    
+            session.close();    
+            System.out.println("success");        
+    }  
+}  
+
+*****Transcation
+
+A transaction simply represents a unit of work. 
+In such case, if one step fails, the whole transaction fails (which is termed as atomicity).
+A transaction can be described by ACID properties (Atomicity, Consistency, Isolation and Durability).
+
+*****Transaction Interface in Hibernate
+
+In hibernate framework, we have Transaction interface that defines the unit of work. 
+It maintains abstraction from the transaction implementation (JTA,JDBC).
+A transaction is associated with Session and instantiated by
+
+The methods of Transaction interface are as follows:
+void begin() starts a new transaction.
+void commit() ends the unit of work unless we are in FlushMode.NEVER.
+void rollback() forces this transaction to rollback.
+void setTimeout(int seconds) it sets a transaction timeout for any transaction started by a subsequent call to begin on this instance.
+boolean isAlive() checks if the transaction is still alive.
+void registerSynchronization(Synchronization s) registers a user synchronization callback for this transaction.
+boolean wasCommited() checks if the transaction is commited successfully.
+boolean wasRolledBack() checks if the transaction is rolledback successfully.
+
+
+******HQL
+
+Hibernate Query Language (HQL) is same as SQL (Structured Query Language)
+but it doesn't depends on the table of the database. Instead of table name, 
+we use class name in HQL. So it is database independent query language.
+
+There are many advantages of HQL. 
+They are as follows:
+database independent
+supports polymorphic queries
+easy to learn for Java Programmer
+
+****************Query Interface
+
+It is an object oriented representation of Hibernate Query. 
+The object of Query can be obtained by calling the createQuery() method Session interface.
+
+The query interface provides many methods. There is given commonly used methods:
+
+public int executeUpdate():::: is used to execute the update or delete query.
+public List list() :::::returns the result of the ralation as a list.
+public Query setFirstResult(int rowno) ::: specifies the row number from where record will be retrieved.
+public Query setMaxResult(int rowno) ::: specifies the no. of records to be retrieved from the relation (table).
+public Query setParameter(int position, Object value) ::: it sets the value to the JDBC style query parameter.
+public Query setParameter(String name, Object value) ::: it sets the value to a named query parameter.
+
+
+
+*************Hibernate Criteria Query Language
+
+The Hibernate Criteria Query Language (HCQL) is used to fetch the records based on the specific criteria. 
+The Criteria interface provides methods 
+to apply criteria such as retreiving all the records of table whose salary is greater than 50000 etc.
+
+***Advantage of HCQL
+
+The HCQL provides methods to add criteria, so it is easy for the java programmer to add criteria.
+The java programmer is able to add many criteria on a query.
+
+***Criteria Interface
+
+The Criteria interface provides many methods to specify criteria.
+The object of Criteria can be obtained by calling the createCriteria() method of Session interface.
+
+Syntax of createCriteria() method of Session interface		
+public Criteria createCriteria(Class c) 
+
+ 
+The commonly used methods of Criteria interface are as follows:::::
+
+public Criteria add(Criterion c) is used to add restrictions.
+public Criteria addOrder(Order o) specifies ordering.
+public Criteria setFirstResult(int firstResult) specifies the first number of record to be retreived.
+public Criteria setMaxResult(int totalResult) specifies the total number of records to be retreived.
+public List list() returns list containing object.
+public Criteria setProjection(Projection projection) specifies the projection.
+
+*******Restrictions class
+
+Restrictions class provides methods that can be used as Criterion. 
+
+The commonly used methods of Restrictions class are as follows:::::::
+
+public static SimpleExpression lt(String propertyName,Object value)::: sets the less than constraint to the given property.
+public static SimpleExpression le(String propertyName,Object value) ::: sets the less than or equal constraint to the given property.
+public static SimpleExpression gt(String propertyName,Object value) ::: sets the greater than constraint to the given property.
+public static SimpleExpression ge(String propertyName,Object value) ::: sets the greater than or equal than constraint to the given property.
+public static SimpleExpression ne(String propertyName,Object value) ::: sets the not equal constraint to the given property.
+public static SimpleExpression eq(String propertyName,Object value) ::: sets the equal constraint to the given property.
+public static Criterion between(String propertyName, Object low, Object high) ::: sets the between constraint.
+public static SimpleExpression like(String propertyName, Object value) ::: sets the like constraint to the given property.
+
+
+*******Order class
+The Order class represents an order. 
+
+The commonly used methods of Restrictions class are as follows:::::
+
+public static Order asc(String propertyName) applies the ascending order on the basis of given property.
+public static Order desc(String propertyName) applies the descending order on the basis of given property.
+
+
+For e.g.
+
+Crietria c=session.createCriteria(Emp.class);  
+c.addOrder(Order.asc("salary"));  
+List list=c.list();  
+
+
+***********HIBERNATE CACHE
+
+Hibernate caching improves the performance of the application by pooling the object in the cache. 
+It is useful when we have to fetch the same data multiple times.
+
+There are mainly two types of caching:
+First Level Cache, and
+Second Level Cache
+
+
+First Level Cache::::::
+Session object holds the first level cache data. It is enabled by default. 
+The first level cache data will not be available to entire application. 
+An application can use many session object.
+
+Second Level Cache :::::::
+SessionFactory object holds the second level cache data. 
+The data stored in the second level cache will be available to entire application.
+But we need to enable it explicitely.
+
+EH (Easy Hibernate) Cache
+Swarm Cache
+OS Cache
+JBoss Cache
+
+
+
+*******HOW TO ENABLE THE SECOND LEVEL CACHE IN HIBERNATE::::::::
+
+To understand the second level cache through example, 
+we need to follow the following steps:::
+
+1)Create the persistent class using Maven
+2)Add project information and configuration in pom.xml file
+3)Create the Configuration file
+4)Create the class that retrieves the persistent object.
+
+Here, we are assuming, there is emp1012 table in the oracle database containing some records.
+
+1)Create the persistent class using Maven.
+
+File: Employee.java
+package com.javatpoint;    
+import javax.persistence.*;  
+import org.hibernate.annotations.Cache;  
+import org.hibernate.annotations.CacheConcurrencyStrategy;  
+@Entity  
+@Table(name="emp1012")  
+@Cacheable  
+@Cache(usage=CacheConcurrencyStrategy.READ_ONLY)  
+public class Employee {    
+    @Id  
+private int id;    
+private String name;    
+private float salary;    
+    
+public Employee() {}    
+public Employee(String name, float salary) {    
+    super();    
+    this.name = name;    
+    this.salary = salary;    
+}  
+public int getId() {  
+    return id;  
+}  
+public void setId(int id) {  
+    this.id = id;  
+}  
+public String getName() {  
+    return name;  
+}  
+public void setName(String name) {  
+    this.name = name;  
+}  
+public float getSalary() {  
+    return salary;  
+}  
+public void setSalary(float salary) {  
+    this.salary = salary;  
+}    
+}    
+
+2) Add project information and configuration in pom.xml file.
+
+Open pom.xml file and click source. Now, 
+add the below dependencies between <dependencies>....</dependencies> tag.
+
+  <dependency>  
+    <groupId>org.hibernate</groupId>  
+    <artifactId>hibernate-core</artifactId>  
+    <version>5.2.16.Final</version>  
+</dependency>  
+      
+<dependency>  
+    <groupId>com.oracle</groupId>  
+    <artifactId>ojdbc14</artifactId>  
+    <version>10.2.0.4.0</version>  
+</dependency>  
+
+************
+<dependency>  
+    <groupId>net.sf.ehcache</groupId>  
+    <artifactId>ehcache</artifactId>  
+    <version>2.10.3</version>  
+</dependency>  
+*************
+     
+<dependency>  
+    <groupId>org.hibernate</groupId>  
+    <artifactId>hibernate-ehcache</artifactId>  
+    <version>5.2.16.Final</version>  
+</dependency>  
+
+3)Create the Configuration file
+
+File: hibernate.cfg.xml
+<?xml version='1.0' encoding='UTF-8'?>    
+<!DOCTYPE hibernate-configuration PUBLIC    
+          "-//Hibernate/Hibernate Configuration DTD 5.2.0//EN"    
+          "http://hibernate.sourceforge.net/hibernate-configuration-5.2.0.dtd">    
+    
+<hibernate-configuration>    
+    
+    <session-factory>    
+        <property name="show_sql">true</property>    
+        <property name="hbm2ddl.auto">update</property>    
+        <property name="dialect">org.hibernate.dialect.Oracle9Dialect</property>    
+        <property name="connection.url">jdbc:oracle:thin:@localhost:1521:xe</property>    
+        <property name="connection.username">system</property>    
+        <property name="connection.password">jtp</property>    
+        <property name="connection.driver_class">oracle.jdbc.driver.OracleDriver</property>    
+         
+         <property name="cache.use_second_level_cache">true</property>   
+         <property name="cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property>  
+         <mapping class="com.javatpoint.Employee"/>  
+    </session-factory>    
+</hibernate-configuration>    
+To implement second level cache, we need to define cache.provider_class property in the configuration file.
+
+4)Create the class that retrieves the persistent object.
+
+File: FetchTest.java
+package com.javatpoint;    
+    
+import org.hibernate.Session;    
+import org.hibernate.SessionFactory;  
+import org.hibernate.boot.Metadata;  
+import org.hibernate.boot.MetadataSources;  
+import org.hibernate.boot.registry.StandardServiceRegistry;  
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;  
+    
+public class FetchTest {    
+public static void main(String[] args) {    
+    StandardServiceRegistry ssr=new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();  
+    Metadata meta=new MetadataSources(ssr).getMetadataBuilder().build();  
+      
+    SessionFactory factory=meta.getSessionFactoryBuilder().build();  
+        
+    Session session1=factory.openSession();    
+    Employee emp1=(Employee)session1.load(Employee.class,121);    
+    System.out.println(emp1.getId()+" "+emp1.getName()+" "+emp1.getSalary());    
+    session1.close();    
+        
+    Session session2=factory.openSession();    
+    Employee emp2=(Employee)session2.load(Employee.class,121);    
+    System.out.println(emp2.getId()+" "+emp2.getName()+" "+emp2.getSalary());    
+    session2.close();    
+        
+}    
+}    
+
+
+**********Hibernate Configuration
+
+As Hibernate can operate in different environments, it requires a wide range of configuration parameters. 
+These configurations contain the mapping information that provides different functionalities to Java classes.
+Generally, we provide database related mappings in the configuration file.
+
+Hibernate facilitates to provide the configurations either in an XML file (like hibernate.cfg.xml) or properties file (like hibernate.properties).
+An instance of Configuration class allows specifying properties and mappings to applications. This class also builds an immutable SessionFactory.
+
+We can acquire the Configuration class instance by instantiating it directly and specifying mappings in the configuration file. Use the addResource() method, 
+if the mapping files are present in the classpath.
+
+Configuration cfg = new Configuration()  
+    .addResource("employee.hbm.xml")  
+	
+
+
+***********Hibernate Lifecycle
+
+In Hibernate, either we create an object of an entity and save it into the database, 
+or we fetch the data of an entity from the database. Here, each entity is associated with the lifecycle. 
+The entity object passes through the different stages of the lifecycle.
+
+The Hibernate lifecycle contains the following states: -
+1)Transient state
+2)Persistent state
+3)Detached state
+
+1)The transient state is the initial state of an object.
+Once we create an instance of POJO class, then the object entered in the transient state.
+Here, an object is not associated with the Session. So, the transient state is not related to any database.
+Hence, modifications in the data don't affect any changes in the database.
+The transient objects exist in the heap memory. They are independent of Hibernate.
+
+Employee e=new Employee(); //Here, object enters in the transient state.  
+e.setId(101);  
+e.setFirstName("Gaurav");  
+e.setLastName("Chawla");  
+
+2)Persistent state
+As soon as the object associated with the Session, it entered in the persistent state.
+Hence, we can say that an object is in the persistence state when we save or persist it.
+Here, each object represents the row of the database table.
+So, modifications in the data make changes in the database.
+We can use any of the following methods for the persistent state.
+
+session.save(e);  
+session.persist(e);  
+session.update(e);  
+session.saveOrUpdate(e);  
+session.lock(e);  
+session.merge(e);  
+
+3)Detached State
+
+Once we either close the session or clear its cache, then the object entered into the detached state.
+As an object is no more associated with the Session, modifications in the data don't 
+affect any changes in the database.
+However, the detached object still has a representation in the database.
+
+If we want to persist the changes made to a detached object, it is required to reattach the application to a valid Hibernate session.
+To associate the detached object with the new hibernate session, 
+use any of these methods - load(), merge(), refresh(), update() or save() 
+on a new session with the reference of the detached object.
+
+We can use any of the following methods for the detached state.
+session.close();  
+session.clear();  
+session.detach(e);  
+session.evict(e);  
+
+

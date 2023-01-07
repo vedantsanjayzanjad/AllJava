@@ -1,0 +1,5 @@
+Pagination and sorting is already present in the jpa repository
+
+AWS EC 2 we yaha hame sare software install krne pdet hai
+
+AWs Elastic BeansStack ye cloud jiasa hai aur khud hai load balancing krta hai 
