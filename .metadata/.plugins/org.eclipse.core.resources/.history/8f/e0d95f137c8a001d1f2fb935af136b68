@@ -1,9 +1,0 @@
-package com.stream;
-
-public class Duplicate 
-{
-	public static void main(String[] args) 
-	{
-		
-	}
-}

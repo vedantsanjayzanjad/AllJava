@@ -21,7 +21,7 @@ public class HotelImpl implements HotelService
 	public Hotel createHotel(Hotel hotel) {
 		
 		String random = UUID.randomUUID().toString();
-		hotel.setId(random);
+		hotel.setHotelId(random);
 		Hotel savedHotel = this.hotelDao.save(hotel);
 		return savedHotel;
 	}

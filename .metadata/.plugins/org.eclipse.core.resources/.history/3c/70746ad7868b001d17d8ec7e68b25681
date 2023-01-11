@@ -1,9 +1,0 @@
-package com.function;
-
-public class BiFunction 
-{
-	public static void main(String[] args)
-	{
-		
-	}
-}

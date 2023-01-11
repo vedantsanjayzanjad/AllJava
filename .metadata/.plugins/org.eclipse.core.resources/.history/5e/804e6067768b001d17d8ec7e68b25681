@@ -1,9 +1,0 @@
-package com.predicate;
-
-public class BiPredicate
-{
-	public static void main(String[] args) {
-		 
-		BiPredicate<Integer,Integer> ok = (a,b) -> (a + b) % 2 ==0
-	}
-}

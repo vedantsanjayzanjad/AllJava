@@ -1,6 +1,0 @@
-package com.lambda;
-
-public interface InterVoid 
-{
-	void get();
-}

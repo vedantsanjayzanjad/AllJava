@@ -2,6 +2,9 @@
 <section name="Workbench">
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="C:\Users\vedant.zanjad\Documents\workspace-spring-tool-suite-4-4.16.0.RELEASE\ConfigServer"/>
+			<item value="C:\Users\vedant.zanjad\Documents\workspace-spring-tool-suite-4-4.16.0.RELEASE\Apigateway"/>
+			<item value="C:\Users\vedant.zanjad\Documents\workspace-spring-tool-suite-4-4.16.0.RELEASE\ApiGateway"/>
 			<item value="D:\BLOG\Backend-Course-Blogging-Application-main"/>
 			<item value="C:\Users\vedant.zanjad\Downloads\Serviceregistry"/>
 			<item value="C:\Users\vedant.zanjad\Downloads\user_services"/>
@@ -25,6 +28,14 @@
 		</list>
 	</section>
 	<section name="org.eclipse.m2e.core.pom.overview">
+		<list key="ciManagementUrl">
+		</list>
+		<list key="ciManagementSystem">
+		</list>
+		<list key="issueManagementSystem">
+		</list>
+		<list key="issueManagementUrl">
+		</list>
 	</section>
 	<section name="org.eclipse.m2e.core.pom.dependencies">
 	</section>

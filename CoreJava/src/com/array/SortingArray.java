@@ -2,6 +2,7 @@ package com.array;
 
 public class SortingArray
 {
+	
 	public static void main(String[] args) 
 	{
 		int arr [] = {123,13,23,34,45};

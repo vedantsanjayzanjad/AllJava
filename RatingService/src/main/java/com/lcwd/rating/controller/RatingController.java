@@ -46,7 +46,7 @@ public class RatingController
 	}
 	
 	
-	@GetMapping("hotel/{hotelId}")
+	@GetMapping("/hotel/{hotelId}")
 	public ResponseEntity<List<Rating>>getRatingByHotel(@PathVariable String hotelId)
 	{
 		return ResponseEntity.

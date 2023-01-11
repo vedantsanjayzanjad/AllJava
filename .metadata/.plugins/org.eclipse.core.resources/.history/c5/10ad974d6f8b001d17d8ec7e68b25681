@@ -1,9 +1,0 @@
-package com.multiplesorting;
-
-public class Student {
-	
-	private int id;
-	private String stdName;
-	private String stdFess;
-	
-}
