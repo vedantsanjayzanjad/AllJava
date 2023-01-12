@@ -41,6 +41,7 @@
 	</section>
 	<section name="MavenProjectWizardLocationPage">
 		<list key="location">
+			<item value="C:\Users\vedant.zanjad\Documents\workspace-spring-tool-suite-4-4.16.0.RELEASE\Hibernate"/>
 			<item value="C:\Users\vedant.zanjad\Documents\workspace-spring-tool-suite-4-4.16.0.RELEASE\SpringMVCCRUD\pom.xml"/>
 			<item value="D:\ProgramOne"/>
 		</list>
@@ -54,7 +55,7 @@
 		</list>
 	</section>
 	<section name="MavenProjectWizardArchetypePage">
-		<item key="catalog" value="All Catalogs"/>
+		<item key="catalog" value="internal"/>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
 			<item value="[artifactId]-TRUNK"/>
@@ -66,10 +67,13 @@
 	</section>
 	<section name="Maven2ProjectWizardArchifactPage">
 		<list key="package">
+			<item value="com.hibernate.Hibernate"/>
 		</list>
 		<list key="groupId">
+			<item value="com.hibernate"/>
 		</list>
 		<list key="artifactId">
+			<item value="Hibernate"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
@@ -121,5 +125,7 @@
 		<item key="height" value="836"/>
 		<item key="x" value="720"/>
 		<item key="y" value="0"/>
+	</section>
+	<section name="org.eclipse.m2e.core.ui.internal.wizards.CustomArchetypeDialog">
 	</section>
 </section>

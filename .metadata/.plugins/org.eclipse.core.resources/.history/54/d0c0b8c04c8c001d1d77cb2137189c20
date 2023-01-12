@@ -1,9 +1,0 @@
-package com.basic;
-
-public class ReverseNumber {
-	
-	public static void main(String[] args) {
-		
-		int arr [] = {23,23,324,34,3};
-	}
-}

@@ -1,8 +1,0 @@
-package com.array;
-
-public class Sum 
-{
-	public static void main(String[] args) {
-		
-	}
-}

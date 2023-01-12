@@ -1,9 +1,0 @@
-package com.array;
-
-public class DuplicateElements 
-{
-	public static void main(String[] args) 
-	{
-		
-	}
-}

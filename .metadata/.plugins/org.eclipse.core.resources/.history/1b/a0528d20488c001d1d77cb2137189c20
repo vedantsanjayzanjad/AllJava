@@ -1,9 +1,0 @@
-package com.array;
-
-public class MissingNumber
-{
-	public static void main(String[] args) 
-	{
-		int arr [] = {11,12,13,15,16};
-	}
-}

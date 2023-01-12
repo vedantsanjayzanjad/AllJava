@@ -1,9 +1,0 @@
-package com.array;
-
-public class MaxAndMin 
-{
-	public static void main(String[] args) 
-	{
-		int arr [] = {12,234,56,35,63};
-	}
-}
