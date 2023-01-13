@@ -2,6 +2,9 @@
 <section name="Workbench">
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="C:\Users\vedant.zanjad\Documents\workspace-spring-tool-suite-4-4.16.0.RELEASE\HibernateDemo"/>
+			<item value="C:\Users\vedant.zanjad\Documents\workspace-spring-tool-suite-4-4.16.0.RELEASE\HibernateWithMaven"/>
+			<item value="D:\SpringMvcWithOrm"/>
 			<item value="C:\Users\vedant.zanjad\Documents\workspace-spring-tool-suite-4-4.16.0.RELEASE\ConfigServer"/>
 			<item value="C:\Users\vedant.zanjad\Documents\workspace-spring-tool-suite-4-4.16.0.RELEASE\Apigateway"/>
 			<item value="C:\Users\vedant.zanjad\Documents\workspace-spring-tool-suite-4-4.16.0.RELEASE\ApiGateway"/>
@@ -14,9 +17,6 @@
 			<item value="D:\phs"/>
 			<item value="D:\PHS-Online-Patient-History-System"/>
 			<item value="C:\Users\vedant.zanjad\Downloads\SpringMVC_CRUD-Operation"/>
-			<item value="D:\SpringMVCProject\SpringMVCCRUD"/>
-			<item value="D:\ProgramOne"/>
-			<item value="C:\Users\vedant.zanjad\Downloads\ProductManagementSystem"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
@@ -67,6 +67,7 @@
 	</section>
 	<section name="Maven2ProjectWizardArchifactPage">
 		<list key="package">
+			<item value="com.hibernate"/>
 			<item value="com.hibernate.Hibernate"/>
 		</list>
 		<list key="groupId">

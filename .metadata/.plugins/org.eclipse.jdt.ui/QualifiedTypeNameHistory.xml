@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="org.springframework.context.annotation.Bean"/>
-    <fullyQualifiedTypeName name="org.springframework.stereotype.Component"/>
     <fullyQualifiedTypeName name="com.blog.security.JwtAuthenticationEntryPoint"/>
     <fullyQualifiedTypeName name="com.blog.security.JwtAuthenticationFilter"/>
     <fullyQualifiedTypeName name="org.springframework.security.config.http.SessionCreationPolicy"/>
@@ -60,4 +58,6 @@
     <fullyQualifiedTypeName name="io.github.resilience4j.ratelimiter.annotation.RateLimiter"/>
     <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="java.util.stream.Collectors"/>
+    <fullyQualifiedTypeName name="org.springframework.boot.autoconfigure.web.ServerProperties.Reactive.Session"/>
+    <fullyQualifiedTypeName name="org.springframework.orm.hibernate5.SessionFactoryUtils"/>
 </qualifiedTypeNameHistroy>
