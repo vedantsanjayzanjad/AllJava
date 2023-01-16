@@ -1,9 +1,0 @@
-package com.stream;
-
-public class GroupBy 
-{
-	public static void main(String[] args) 
-	{
-		
-	}
-}
