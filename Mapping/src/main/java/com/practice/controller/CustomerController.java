@@ -54,11 +54,11 @@ public class CustomerController {
 		(new ApiResponse("customer is deleted !!!",true),HttpStatus.FOUND);
 	}
 	
-	@PutMapping("/cust/{cust_id}")
+	@PutMapping("/cust/{cust_id}/orders/{o_id}")
 	public ResponseEntity<Customer> updateCustomer
-	(@RequestBody Customer cust,@PathVariable int cust_id)
+	(@RequestBody Customer cust,@PathVariable int cust_id,@PathVariable int o_id)
 	{
-		Customer updateCustomer = this.custServ.updateCustomer(cust_id, cust);
+		Customer updateCustomer = this.custServ.updateCustomer(cust_id, cust,o_id);
 		return new ResponseEntity<Customer>(updateCustomer,HttpStatus.OK);
 	}	
 }

@@ -38,8 +38,9 @@ public class OrdersImpl implements OrderService{
 
 	@Override
 	public void deleteOrders(int o_id) {
-		this.orderDao.findById(o_id)
+		Orders orElseThrow = this.orderDao.findById(o_id)
 				.orElseThrow(() -> new ResourceNotFoundException("Orders", "OrdersId", o_id));
+		this.orderDao.delete(orElseThrow);
 	}
 
 	@Override

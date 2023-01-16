@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="org.springframework.orm.hibernate5.SessionFactoryUtils"/>
-    <fullyQualifiedTypeName name="java.lang.System"/>
-    <fullyQualifiedTypeName name="java.lang.Runnable"/>
     <fullyQualifiedTypeName name="java.lang.Thread"/>
     <fullyQualifiedTypeName name="com.multithreading.daemon.Company"/>
     <fullyQualifiedTypeName name="com.multithreading.daemon.Consumer"/>
@@ -18,7 +15,6 @@
     <fullyQualifiedTypeName name="org.hibernate.annotations.ManyToAny"/>
     <fullyQualifiedTypeName name="jakarta.persistence.ManyToMany"/>
     <fullyQualifiedTypeName name="org.springframework.data.domain.jaxb.SpringDataJaxb.OrderDto"/>
-    <fullyQualifiedTypeName name="jakarta.persistence.CascadeType"/>
     <fullyQualifiedTypeName name="com.practice.reposistory.OrderRepo"/>
     <fullyQualifiedTypeName name="java.util.Optional"/>
     <fullyQualifiedTypeName name="lombok.NoArgsConstructor"/>
@@ -29,7 +25,6 @@
     <fullyQualifiedTypeName name="jakarta.persistence.GenerationType"/>
     <fullyQualifiedTypeName name="java.time.LocalDate"/>
     <fullyQualifiedTypeName name="org.springframework.format.annotation.DateTimeFormat"/>
-    <fullyQualifiedTypeName name="jakarta.persistence.OneToOne"/>
     <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.JpaRepository"/>
     <fullyQualifiedTypeName name="java.lang.Integer"/>
     <fullyQualifiedTypeName name="java.util.List"/>
@@ -58,6 +53,11 @@
     <fullyQualifiedTypeName name="com.practice.service.impl.OrdersImpl"/>
     <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
     <fullyQualifiedTypeName name="com.practice.repo.OrdersDao"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
+    <fullyQualifiedTypeName name="jakarta.persistence.CascadeType"/>
+    <fullyQualifiedTypeName name="jakarta.persistence.JoinColumn"/>
+    <fullyQualifiedTypeName name="jakarta.persistence.OneToOne"/>
+    <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonBackReference"/>
+    <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonManagedReference"/>
     <fullyQualifiedTypeName name="com.practice.model.Customer"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
 </qualifiedTypeNameHistroy>

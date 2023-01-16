@@ -25,23 +25,26 @@ public class RatingController
 	@PostMapping("/addRating")
 	public ResponseEntity<Rating> creatrating(@RequestBody Rating rating)
 	{
-		return ResponseEntity.
-		status(HttpStatus.CREATED).body(this.ratingService.createrating(rating));
+		return ResponseEntity
+		.status(HttpStatus.CREATED)
+		.body(this.ratingService.createrating(rating));
 	}
 	
 	@GetMapping("/getAll")
 	public ResponseEntity<List<Rating>>getAll()
 	{
-		return ResponseEntity.
-		status(HttpStatus.FOUND).body(this.ratingService.getAllRating());
+		return ResponseEntity
+		.status(HttpStatus.FOUND)
+		.body(this.ratingService.getAllRating());
 
 	}
 	
 	@GetMapping("user/{userId}")
 	public ResponseEntity<List<Rating>>getRatingByUser(@PathVariable String userId)
 	{
-		return ResponseEntity.
-		status(HttpStatus.FOUND).body(this.ratingService.getRatingByUser(userId));
+		return ResponseEntity
+		.status(HttpStatus.FOUND)
+		.body(this.ratingService.getRatingByUser(userId));
 
 	}
 	
@@ -49,7 +52,8 @@ public class RatingController
 	@GetMapping("/hotel/{hotelId}")
 	public ResponseEntity<List<Rating>>getRatingByHotel(@PathVariable String hotelId)
 	{
-		return ResponseEntity.
-		status(HttpStatus.FOUND).body(this.ratingService.getRatingByHotel(hotelId));
+		return ResponseEntity
+		.status(HttpStatus.FOUND)
+		.body(this.ratingService.getRatingByHotel(hotelId));
 	}
 }

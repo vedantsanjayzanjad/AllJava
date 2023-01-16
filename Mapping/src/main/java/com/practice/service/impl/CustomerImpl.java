@@ -18,35 +18,37 @@ public class CustomerImpl implements CustomerService {
 
 	@Autowired
 	private CustomerDao customerDao;
-	
+
 	@Autowired
 	private OrdersDao orderDao;
 
 	@Override
-	public Customer createCustomers(Customer cust,int o_id) {
-		Orders order = this.orderDao.findById(o_id).
-		orElseThrow(() -> new ResourceNotFoundException("Orders", "OrderId", o_id));
+	public Customer createCustomers(Customer cust, int o_id) {
+		Orders order = this.orderDao.findById(o_id)
+				.orElseThrow(() -> new ResourceNotFoundException("Orders", "OrderId", o_id));
 		cust.setOrder(order);
 		Customer save = this.customerDao.save(cust);
 		return save;
 	}
 
 	@Override
-	public Customer updateCustomer(int cust_id, Customer cust) {
+	public Customer updateCustomer(int cust_id, Customer cust, int o_id) {
 		Customer findById = this.customerDao.findById(cust_id)
 				.orElseThrow(() -> new ResourceNotFoundException("Customers", "customerId", cust_id));
-		
-		findById.setCust_name(cust.getCust_name());
-		findById.setCust_gender(cust.getCust_gender());
-
-		Customer saveCust = this.customerDao.save(cust);
+		Orders order = this.orderDao.findById(o_id)
+				.orElseThrow(() -> new ResourceNotFoundException("Orders", "OrderId", o_id));
+		cust.setCust_name(findById.getCust_name());
+		cust.setCust_gender(findById.getCust_gender());
+		findById.setOrder(order);
+		Customer saveCust = this.customerDao.saveAndFlush(findById);
 		return saveCust;
 	}
 
 	@Override
 	public void deleteCustomer(int cust_id) {
-		this.customerDao.findById(cust_id)
+		Customer orElseThrow = this.customerDao.findById(cust_id)
 				.orElseThrow(() -> new ResourceNotFoundException("Customers", "customerId", cust_id));
+		this.customerDao.delete(orElseThrow);
 	}
 
 	@Override

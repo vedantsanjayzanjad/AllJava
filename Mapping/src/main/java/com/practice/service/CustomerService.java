@@ -8,7 +8,7 @@ public interface CustomerService {
 
 	public Customer createCustomers(Customer cust,int o_id);
 	
-	public Customer updateCustomer(int cust_id,Customer cust);
+	public Customer updateCustomer(int cust_id,Customer cust,int o_id);
 	
 	public void deleteCustomer(int cust_id);
 	
