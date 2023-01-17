@@ -45,8 +45,8 @@ public interface CustomerDao extends JpaRepository<Customer, Integer> {
 //		
 //		public List<Customer> findByRollNumberLessThan(String rollnumber);
 
-//	 User findFirstByOrderByLastnameAsc();
+//	 	User findFirstByOrderByLastnameAsc();
 
-//	 User findTopByOrderByAgeDesc();
+//	 	User findTopByOrderByAgeDesc();
 
 }
