@@ -13,11 +13,13 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 @Entity
 public class Customer 
 {
@@ -29,7 +31,7 @@ public class Customer
 	
 	private String custGender;
 	
-	@OneToOne(cascade = CascadeType.MERGE)
+	@OneToOne(cascade = CascadeType.ALL)
 	@JsonManagedReference
 	@JoinColumn(name = "order_id", referencedColumnName = "o_id")
 	private Orders order;

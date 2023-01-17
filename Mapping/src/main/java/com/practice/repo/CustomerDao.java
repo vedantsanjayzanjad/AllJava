@@ -13,19 +13,19 @@ public interface CustomerDao extends JpaRepository<Customer, Integer> {
 
 	List<Customer> findByOrder(Orders order);
 
-	List<Customer> findByCustNameContainingIgnoreCase(String custName);
+	// List<Customer> findByCustNameContainingIgnoreCase(String custName);
+
+	List<Customer> findByCustNameContainingIgnoreCaseOrderByCustGenderAsc(String custName);
 
 	List<Customer> findByCustNameLike(String keyword);
+	
+	
 
 //	 	public List<Student> findFirst3ByName(String name);
 //		
 //		public List<Student> findByNameIs(String name);
 //		
 //		public List<Student> findByNameEquals(String name);
-//		
-//		public List<Customer> findByRollNumber(String rollNumber);
-//		
-//		public List<Customer> findByUniversity(String university);
 //		
 //		public List<Customer> findByNameAndRollNumber(String name, String rollNumber);
 //		
@@ -44,9 +44,20 @@ public interface CustomerDao extends JpaRepository<Customer, Integer> {
 //		public List<Customer> findByRollNumberGreaterThan(String rollnumber);
 //		
 //		public List<Customer> findByRollNumberLessThan(String rollnumber);
+	
+//	List<Person> findDistinctPeopleByLastnameOrFirstname(String lastname, String firstname);
 
-//	 	User findFirstByOrderByLastnameAsc();
+//	List<Person> findPeopleDistinctByLastnameOrFirstname(String lastname, String firstname);
+	
+	
+	// Enabling ignoring case for an individual property
+//	  List<Person> findByLastnameIgnoreCase(String lastname);
+//	  // Enabling ignoring case for all suitable properties
+//	  List<Person> findByLastnameAndFirstnameAllIgnoreCase(String lastname, String firstname);
+	
+//	 // Enabling static ORDER BY for a query
+//	  List<Person> findByLastnameOrderByFirstnameAsc(String lastname);
+//	  List<Person> findByLastnameOrderByFirstnameDesc(String lastname);
 
-//	 	User findTopByOrderByAgeDesc();
 
 }

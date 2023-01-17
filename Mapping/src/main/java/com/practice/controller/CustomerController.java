@@ -30,6 +30,12 @@ public class CustomerController {
 		Customer createCustomers = this.custServ.createCustomers(cust, o_id);
 		return new ResponseEntity<Customer>(createCustomers, HttpStatus.CREATED);
 	}
+	
+	@PostMapping("/cust")
+	public ResponseEntity<Customer> saveCustomerOnly(@RequestBody Customer cust) {
+		Customer createCustomers = this.custServ.createCustomersOnly(cust);
+		return new ResponseEntity<Customer>(createCustomers, HttpStatus.CREATED);
+	}
 
 	@GetMapping("/getAll")
 	public ResponseEntity<List<Customer>> getAllCustomer() {
@@ -76,4 +82,5 @@ public class CustomerController {
 		List<Customer> oneCustomerByOrders = this.custServ.getCustNameLike(keyword);
 		return new ResponseEntity<List<Customer>>(oneCustomerByOrders,HttpStatus.FOUND);
 	}
+	
 }

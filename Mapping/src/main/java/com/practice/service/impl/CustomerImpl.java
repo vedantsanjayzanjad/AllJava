@@ -32,6 +32,12 @@ public class CustomerImpl implements CustomerService {
 		Customer save = this.customerDao.save(cust);
 		return save;
 	}
+	
+	@Override
+	public Customer createCustomersOnly(Customer cust) {
+		Customer save = this.customerDao.save(cust);
+		return save;
+	}
 
 	@Override
 	public Customer updateCustomer(int cust_id, Customer cust, int o_id) {
@@ -76,17 +82,18 @@ public class CustomerImpl implements CustomerService {
 
 	@Override
 	public List<Customer> getCustByName(String cust_name) {
-		
-		List<Customer> findByCust_Name = this.customerDao.findByCustNameContainingIgnoreCase(cust_name);
+
+		List<Customer> findByCust_Name = this.customerDao.findByCustNameContainingIgnoreCaseOrderByCustGenderAsc(cust_name);
 		return findByCust_Name;
 
 	}
 
 	@Override
 	public List<Customer> getCustNameLike(String keyword) {
-		List<Customer> findByCustNameLike = this.customerDao.findByCustNameLike("%"+keyword+"%");
+		List<Customer> findByCustNameLike = this.customerDao.findByCustNameLike("%" + keyword + "%");
+		//System.out.println(findByCustNameLike);
 		return findByCustNameLike;
 	}
-	
-	
+
+
 }
