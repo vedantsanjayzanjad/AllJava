@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.practice.exception.ResourceNotFoundException;
 import com.practice.model.Customer;
@@ -37,8 +39,8 @@ public class CustomerImpl implements CustomerService {
 				.orElseThrow(() -> new ResourceNotFoundException("Customers", "customerId", cust_id));
 		Orders order = this.orderDao.findById(o_id)
 				.orElseThrow(() -> new ResourceNotFoundException("Orders", "OrderId", o_id));
-		cust.setCust_name(findById.getCust_name());
-		cust.setCust_gender(findById.getCust_gender());
+		cust.setCustName(cust.getCustName());
+		cust.setCustGender(cust.getCustGender());
 		findById.setOrder(order);
 		Customer saveCust = this.customerDao.saveAndFlush(findById);
 		return saveCust;
@@ -64,4 +66,27 @@ public class CustomerImpl implements CustomerService {
 		return cust;
 	}
 
+	@Override
+	public List<Customer> getOneCustomerByOrders(int o_id) {
+		Orders order = this.orderDao.findById(o_id)
+				.orElseThrow(() -> new ResourceNotFoundException("Orders", "orderId", o_id));
+		List<Customer> findByOrders = this.customerDao.findByOrder(order);
+		return findByOrders;
+	}
+
+	@Override
+	public List<Customer> getCustByName(String cust_name) {
+		
+		List<Customer> findByCust_Name = this.customerDao.findByCustNameContainingIgnoreCase(cust_name);
+		return findByCust_Name;
+
+	}
+
+	@Override
+	public List<Customer> getCustNameLike(String keyword) {
+		List<Customer> findByCustNameLike = this.customerDao.findByCustNameLike("%"+keyword+"%");
+		return findByCustNameLike;
+	}
+	
+	
 }

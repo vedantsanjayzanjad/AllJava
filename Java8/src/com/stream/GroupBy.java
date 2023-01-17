@@ -70,5 +70,9 @@ public class GroupBy
 		//3
 //	  Map<String, Long> collectCount = list.stream().collect(Collectors.groupingBy(Employee :: getEmpCity,Collectors.counting()));
 //	  System.out.println(collectCount);
+		
+		//4
+//		employeeList.stream().
+//		collect(Collectors.groupingBy(Employee::getGender, Collectors.averagingInt(Employee::getAge)));
 	}
 }

@@ -23,11 +23,11 @@ public class Customer
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int cust_id;
+	private int custId;
 	
-	private String cust_name;
+	private String custName;
 	
-	private String cust_gender;
+	private String custGender;
 	
 	@OneToOne(cascade = CascadeType.MERGE)
 	@JsonManagedReference

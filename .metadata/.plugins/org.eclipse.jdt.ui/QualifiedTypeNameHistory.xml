@@ -1,20 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="java.lang.Thread"/>
-    <fullyQualifiedTypeName name="com.multithreading.daemon.Company"/>
-    <fullyQualifiedTypeName name="com.multithreading.daemon.Consumer"/>
-    <fullyQualifiedTypeName name="org.hibernate.annotations.IdGeneratorType"/>
-    <fullyQualifiedTypeName name="com.practice.service.EmployeeService"/>
-    <fullyQualifiedTypeName name="com.practice.reposistory.EmployeeDao"/>
-    <fullyQualifiedTypeName name="org.springframework.stereotype.Controller"/>
-    <fullyQualifiedTypeName name="com.practice.service.impl.EmployeeImpl"/>
-    <fullyQualifiedTypeName name="java.lang.Deprecated"/>
-    <fullyQualifiedTypeName name="jakarta.annotation.Generated"/>
-    <fullyQualifiedTypeName name="lombok.ToString"/>
-    <fullyQualifiedTypeName name="com.practice.model.Employee"/>
-    <fullyQualifiedTypeName name="org.hibernate.annotations.ManyToAny"/>
-    <fullyQualifiedTypeName name="jakarta.persistence.ManyToMany"/>
-    <fullyQualifiedTypeName name="org.springframework.data.domain.jaxb.SpringDataJaxb.OrderDto"/>
     <fullyQualifiedTypeName name="com.practice.reposistory.OrderRepo"/>
     <fullyQualifiedTypeName name="java.util.Optional"/>
     <fullyQualifiedTypeName name="lombok.NoArgsConstructor"/>
@@ -27,7 +12,6 @@
     <fullyQualifiedTypeName name="org.springframework.format.annotation.DateTimeFormat"/>
     <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.JpaRepository"/>
     <fullyQualifiedTypeName name="java.lang.Integer"/>
-    <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="org.springframework.stereotype.Repository"/>
     <fullyQualifiedTypeName name="com.practice.repo.CustomerDao"/>
     <fullyQualifiedTypeName name="lombok.Getter"/>
@@ -36,18 +20,13 @@
     <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
     <fullyQualifiedTypeName name="com.practice.service.CustomerService"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PostMapping"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
     <fullyQualifiedTypeName name="org.springframework.http.HttpStatusCode"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.DeleteMapping"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMapping"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RestControllerAdvice"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.ExceptionHandler"/>
-    <fullyQualifiedTypeName name="com.practice.exception.ResourceNotFoundException"/>
     <fullyQualifiedTypeName name="com.practice.payloads.ApiResponse"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PutMapping"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestBody"/>
-    <fullyQualifiedTypeName name="org.springframework.http.ResponseEntity"/>
-    <fullyQualifiedTypeName name="org.springframework.http.HttpStatus"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RestController"/>
     <fullyQualifiedTypeName name="com.practice.model.Orders"/>
     <fullyQualifiedTypeName name="com.practice.service.impl.OrdersImpl"/>
@@ -58,6 +37,27 @@
     <fullyQualifiedTypeName name="jakarta.persistence.OneToOne"/>
     <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonBackReference"/>
     <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonManagedReference"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestBody"/>
+    <fullyQualifiedTypeName name="com.practice.exception.ResourceNotFoundException"/>
     <fullyQualifiedTypeName name="com.practice.model.Customer"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
+    <fullyQualifiedTypeName name="org.springframework.http.ResponseEntity"/>
+    <fullyQualifiedTypeName name="org.springframework.http.HttpStatus"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
+    <fullyQualifiedTypeName name="java.util.Arrays"/>
+    <fullyQualifiedTypeName name="com.stream.Interview.Customer"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="java.lang.FunctionalInterface"/>
+    <fullyQualifiedTypeName name="com.stream.Distinct"/>
+    <fullyQualifiedTypeName name="com.stream.interview.Customer.Interview"/>
+    <fullyQualifiedTypeName name="java.util.Collections"/>
+    <fullyQualifiedTypeName name="java.util.stream.Collector"/>
+    <fullyQualifiedTypeName name="java.util.Comparator"/>
+    <fullyQualifiedTypeName name="java.net.ProtocolException"/>
+    <fullyQualifiedTypeName name="java.util.Set"/>
+    <fullyQualifiedTypeName name="java.util.TreeSet"/>
+    <fullyQualifiedTypeName name="java.util.HashSet"/>
+    <fullyQualifiedTypeName name="com.stream.interview.Customer"/>
+    <fullyQualifiedTypeName name="java.util.stream.Collectors"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
 </qualifiedTypeNameHistroy>

@@ -15,4 +15,10 @@ public interface CustomerService {
 	public List<Customer> getAllCustomer();
 	
 	public Customer getOnecustomer(int cust_id);
+
+	List<Customer> getOneCustomerByOrders(int o_id);
+	
+	public List<Customer> getCustByName(String cust_name);
+
+	List<Customer> getCustNameLike(String keyword);
 }
