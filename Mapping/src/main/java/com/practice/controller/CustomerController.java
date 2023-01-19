@@ -1,6 +1,6 @@
 package com.practice.controller;
-
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.practice.model.Customer;
 import com.practice.payloads.ApiResponse;
+import com.practice.payloads.AppConstant;
 import com.practice.service.CustomerService;
 
 @RestController
@@ -38,8 +38,12 @@ public class CustomerController {
 	}
 
 	@GetMapping("/getAll")
-	public ResponseEntity<List<Customer>> getAllCustomer() {
-		List<Customer> allCustomer = this.custServ.getAllCustomer();
+	public ResponseEntity<List<Customer>> getAllCustomer(	
+			@RequestParam(value = "pageNumber", defaultValue = AppConstant.PAGE_NUMBER, required = false) Integer pageNumber,
+			@RequestParam(value = "pageSize", defaultValue = AppConstant.PAGE_SIZE, required = false) Integer pageSize,
+			@RequestParam(value = "sortBy", defaultValue = AppConstant.SORT_BY, required = false) String sortBy,
+			@RequestParam(value = "sortDir", defaultValue = AppConstant.SORT_DIR, required = false) String sortDir) {
+		List<Customer> allCustomer = this.custServ.getAllCustomer(pageNumber,pageSize,sortBy,sortDir);
 		return new ResponseEntity<List<Customer>>(allCustomer, HttpStatus.FOUND);
 	}
 
@@ -59,6 +63,12 @@ public class CustomerController {
 	public ResponseEntity<Customer> updateCustomer(@RequestBody Customer cust, @PathVariable int cust_id,
 			@PathVariable int o_id) {
 		Customer updateCustomer = this.custServ.updateCustomer(cust_id, cust, o_id);
+		return new ResponseEntity<Customer>(updateCustomer, HttpStatus.OK);
+	}
+	
+	@PutMapping("/cust/{cust_id}/orders")
+	public ResponseEntity<Customer> updateCustomer(@RequestBody Customer cust, @PathVariable int cust_id) {
+		Customer updateCustomer = this.custServ.updateCustomerAndOrder(cust_id, cust);
 		return new ResponseEntity<Customer>(updateCustomer, HttpStatus.OK);
 	}
 

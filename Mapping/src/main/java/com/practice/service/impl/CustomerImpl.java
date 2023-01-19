@@ -1,13 +1,17 @@
 package com.practice.service.impl;
 
 import java.util.List;
+
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-
 import com.practice.exception.ResourceNotFoundException;
 import com.practice.model.Customer;
 import com.practice.model.Orders;
@@ -45,10 +49,10 @@ public class CustomerImpl implements CustomerService {
 				.orElseThrow(() -> new ResourceNotFoundException("Customers", "customerId", cust_id));
 		Orders order = this.orderDao.findById(o_id)
 				.orElseThrow(() -> new ResourceNotFoundException("Orders", "OrderId", o_id));
-		cust.setCustName(cust.getCustName());
-		cust.setCustGender(cust.getCustGender());
+		findById.setCustName(cust.getCustName());
+		findById.setCustGender(cust.getCustGender());
 		findById.setOrder(order);
-		Customer saveCust = this.customerDao.saveAndFlush(findById);
+		Customer saveCust = this.customerDao.save(findById);
 		return saveCust;
 	}
 
@@ -60,9 +64,13 @@ public class CustomerImpl implements CustomerService {
 	}
 
 	@Override
-	public List<Customer> getAllCustomer() {
-		List<Customer> findAll = this.customerDao.findAll();
-		return findAll;
+	public List<Customer> getAllCustomer(Integer pageNumber,Integer pageSize,String sortBy, String sortDir) {
+	    Sort sort = (sortDir.equalsIgnoreCase("asc")) ? Sort.by(sortBy).ascending() : Sort.by(sortBy).descending();
+		  Pageable p = PageRequest.of(pageNumber, pageSize,sort);
+		  Page<Customer> pagePost = this.customerDao.findAll(p);
+		  List<Customer> allCustomer = pagePost.getContent();
+		  //List<Customer> findAll = this.customerDao.findAll();
+		  return allCustomer;
 	}
 
 	@Override
@@ -93,6 +101,20 @@ public class CustomerImpl implements CustomerService {
 		List<Customer> findByCustNameLike = this.customerDao.findByCustNameLike("%" + keyword + "%");
 		//System.out.println(findByCustNameLike);
 		return findByCustNameLike;
+	}
+
+	@Override
+	public Customer updateCustomerAndOrder(int cust_id, Customer cust)
+	{
+		Customer orElseThrow = this.customerDao
+				.findById(cust_id)
+				.orElseThrow(() -> new ResourceNotFoundException("Customers","custId",cust_id));
+		orElseThrow.setCustName(cust.getCustName());
+		orElseThrow.setCustGender(cust.getCustGender());
+		orElseThrow.setOrder(cust.getOrder());
+		Customer saveCust = this.customerDao.save(orElseThrow);
+		return saveCust;
+		
 	}
 
 

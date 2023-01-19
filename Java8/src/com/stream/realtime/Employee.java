@@ -124,7 +124,6 @@ class Employee {
 		System.out.println(avgSalaryOfDepartments);
 
 		// Get the details of youngest male employee in the product development
-		// department?
 		Optional<Employee> youngestMaleEmployeeInProductDevelopmentWrapper = employeeList.stream()
 				.filter(e -> e.getGender() == "Male" && e.getDepartment() == "Product Development")
 				.min(Comparator.comparingInt(Employee::getAge));
@@ -182,5 +181,47 @@ class Employee {
 		System.out.println("Average Salary = "+employeeSalaryStatistics.getAverage());
         
 		System.out.println("Total Salary = "+employeeSalaryStatistics.getSum());
+		
+		System.out.println("");
+		
+		//Get the details of highest paid employee in the organization?
+		//Use Collectors.maxBy() method which returns maximum element wrapped in an Optional
+		//object based on supplied Comparator.
+		
+		Optional<Employee> highestPaidEmployeeWrapper=
+				employeeList.stream().collect(Collectors.maxBy(Comparator.comparingDouble(Employee::getSalary)));
+				System.out.println(highestPaidEmployeeWrapper);
+//				Employee highestPaidEmployee = highestPaidEmployeeWrapper.get();
+//				         
+//				System.out.println("Details Of Highest Paid Employee : ");
+//				         
+//				System.out.println("==================================");
+//				         
+//				System.out.println("ID : "+highestPaidEmployee.getId());
+//				         
+//				System.out.println("Name : "+highestPaidEmployee.getName());
+//				         
+//				System.out.println("Age : "+highestPaidEmployee.getAge());
+//				         
+//				System.out.println("Gender : "+highestPaidEmployee.getGender());
+//				         
+//				System.out.println("Department : "+highestPaidEmployee.getDepartment());
+//				         
+//				System.out.println("Year Of Joining : "+highestPaidEmployee.getYearOfJoining());
+//				         
+//				System.out.println("Salary : "+highestPaidEmployee.getSalary());
+				
+				System.out.println("");
+				
+//				Who is the oldest employee in the organization? What is his age and which department he belongs to?
+				Optional<Employee> oldestEmployeeWrapper = employeeList.stream().max(Comparator.comparingInt(Employee::getAge));
+		         
+				Employee oldestEmployee = oldestEmployeeWrapper.get();
+				         
+				System.out.println("Name : "+oldestEmployee.getName());
+				         
+				System.out.println("Age : "+oldestEmployee.getAge());
+				         
+				System.out.println("Department : "+oldestEmployee.getDepartment());
 	}
 }

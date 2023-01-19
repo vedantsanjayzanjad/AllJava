@@ -12,9 +12,11 @@ public interface CustomerService {
 	
 	public Customer updateCustomer(int cust_id,Customer cust,int o_id);
 	
+	public Customer updateCustomerAndOrder(int cust_id,Customer cust);
+	
 	public void deleteCustomer(int cust_id);
 	
-	public List<Customer> getAllCustomer();
+	public List<Customer> getAllCustomer(Integer pageNumber,Integer pageSize,String sortBy, String sortDir);
 	
 	public Customer getOnecustomer(int cust_id);
 
