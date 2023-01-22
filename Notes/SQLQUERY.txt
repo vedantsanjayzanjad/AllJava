@@ -49,9 +49,11 @@ select * from employee where not emp_city = "shegaon" and not (emp_gender = "mal
 
 select * from employee order by emp_salary asc; 
 if u not mention asc and desc it will consider asc.
+
 select * from employee order by emp_salary desc;
 select * from employee order by emp_salary, emp_name;
 first followed the emp_salary but any data ius common then it will foloow the emp_name;
+
 select * from employee order by emp_salary desc, emp_name desc;
 
 
@@ -186,7 +188,7 @@ right - will return all data of right table and left of matching only
 left - right - will return all data of lefttable and right of matching only 
 inner- will return all the matching data of both tables
 
-cross
+cross or CARTESIAN JOIN 
 The CROSS JOIN keyword returns all matching records from both tables whether the other table matches or not. So, if there are rows in "Customers" that do not have matches in "Orders",
 or if there are rows in "Orders" that do not have matches in "Customers", those rows will be listed as well.
 If you add a WHERE clause (if table1 and table2 has a relationship), the CROSS JOIN will produce the same result as the INNER JOIN clause:
@@ -313,7 +315,7 @@ mysql> select * from employee;
 |     10 | aditya    | omkareshwar | gay        | NULL       |      62343 | NULL   |
 +--------+-----------+-------------+------------+------------+------------+--------+
 
-2)alter table employee drop emp_ok;
+2)alter table employee drop column emp_ok;
 3)alter table employee modify column emp_name varchar(20);
 
 2)SQL constraints are used to specify rules for the data in a table.

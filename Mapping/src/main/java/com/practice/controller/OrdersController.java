@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.practice.model.Orders;
 import com.practice.payloads.ApiResponse;
+import com.practice.payloads.OrderDto;
 import com.practice.service.impl.OrdersImpl;
 
 @RestController("orders")
@@ -24,24 +25,24 @@ public class OrdersController {
 	
 	
 	@PostMapping("/order")
-	public ResponseEntity<Orders> saveOrders(@RequestBody Orders order)
+	public ResponseEntity<OrderDto> saveOrders(@RequestBody OrderDto order)
 	{
-		Orders createOrders = this.orderImpl.createOrders(order);
-		return new ResponseEntity<Orders>(createOrders,HttpStatus.CREATED);
+		OrderDto createOrders = this.orderImpl.createOrders(order);
+		return new ResponseEntity<OrderDto>(createOrders,HttpStatus.CREATED);
 	}
 	
 	@GetMapping("/getAll")
-	public ResponseEntity<List<Orders>> getAllOrders()
+	public ResponseEntity<List<OrderDto>> getAllOrders()
 	{
-		List<Orders> allOrders = this.orderImpl.getAllOrders();
-		return new ResponseEntity<List<Orders>>(allOrders,HttpStatus.FOUND);
+		List<OrderDto> allOrders = this.orderImpl.getAllOrders();
+		return new ResponseEntity<List<OrderDto>>(allOrders,HttpStatus.FOUND);
 	}
 	
 	@GetMapping("/getOne/{o_id}")
-	public ResponseEntity<Orders> getOneCustomer(@PathVariable int o_id)
+	public ResponseEntity<OrderDto> getOneCustomer(@PathVariable int o_id)
 	{
-		Orders allOrders = this.orderImpl.getOneOrder(o_id);
-		return new ResponseEntity<Orders>(allOrders,HttpStatus.FOUND);
+		OrderDto allOrders = this.orderImpl.getOneOrder(o_id);
+		return new ResponseEntity<OrderDto>(allOrders,HttpStatus.FOUND);
 	}
 	
 	@DeleteMapping("/deleteOrders/{o_id}")
@@ -53,11 +54,11 @@ public class OrdersController {
 	}
 	
 	@PutMapping("/order/{o_id}")
-	public ResponseEntity<Orders> updateOrders
-	(@RequestBody Orders order,@PathVariable int o_id)
+	public ResponseEntity<OrderDto> updateOrders
+	(@RequestBody OrderDto order,@PathVariable int o_id)
 	{
-		Orders updateOrders = this.orderImpl.updateOrders(o_id, order);
-		return new ResponseEntity<Orders>(updateOrders,HttpStatus.OK);
+		OrderDto updateOrders = this.orderImpl.updateOrders(o_id, order);
+		return new ResponseEntity<OrderDto>(updateOrders,HttpStatus.OK);
 	}	
 
 }

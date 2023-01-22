@@ -2,18 +2,19 @@ package com.practice.service;
 
 import java.util.List;
 
-import com.practice.model.Customer;
-import com.practice.model.Orders;
+import com.practice.payloads.OrderDto;
+import com.practice.repo.OrdersDao;
 
-public interface OrderService {
+public interface OrderService 
+{
 
-	public Orders createOrders(Orders order);
+	public OrderDto createOrders(OrderDto order);
 
-	public Orders updateOrders(int o_id, Orders order);
+	public OrderDto updateOrders(int o_id, OrderDto order);
 
 	public void deleteOrders(int o_id);
 
-	public List<Orders> getAllOrders();
+	public List<OrderDto> getAllOrders();
 
-	public Orders getOneOrder(int o_id);
+	public OrderDto getOneOrder(int o_id);
 }

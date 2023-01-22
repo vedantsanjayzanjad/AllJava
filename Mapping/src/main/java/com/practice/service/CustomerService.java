@@ -1,29 +1,32 @@
 package com.practice.service;
 
 import java.util.List;
-
-import com.practice.model.Customer;
+import java.util.Map;
+import com.practice.payloads.CustomerDto;
+import com.practice.payloads.CustomerResponse;
 
 public interface CustomerService {
 
-	public Customer createCustomers(Customer cust,int o_id);
+	public CustomerDto createCustomers(CustomerDto cust,int o_id);
 	
-	public Customer createCustomersOnly(Customer cust);
+	public CustomerDto createCustomersOnly(CustomerDto cust);
 	
-	public Customer updateCustomer(int cust_id,Customer cust,int o_id);
+	public CustomerDto updateCustomer(int cust_id,CustomerDto cust,int o_id);
 	
-	public Customer updateCustomerAndOrder(int cust_id,Customer cust);
+	public CustomerDto updateCustomerAndOrder(int cust_id,CustomerDto cust);
 	
 	public void deleteCustomer(int cust_id);
 	
-	public List<Customer> getAllCustomer(Integer pageNumber,Integer pageSize,String sortBy, String sortDir);
+	public CustomerResponse getAllCustomer(Integer pageNumber,Integer pageSize,String sortBy, String sortDir);
 	
-	public Customer getOnecustomer(int cust_id);
+	public CustomerDto getOnecustomer(int cust_id);
 
-	List<Customer> getOneCustomerByOrders(int o_id);
+	List<CustomerDto> getOneCustomerByOrders(int o_id);
 	
-	public List<Customer> getCustByName(String cust_name);
+	public List<CustomerDto> getCustByName(String cust_name);
 
-	List<Customer> getCustNameLike(String keyword);
-	
+	List<CustomerDto> getCustNameLike(String keyword);
+
+	public CustomerDto UpdateCustomerByFields(int cust_id, Map<String, Object> fields);
+
 }

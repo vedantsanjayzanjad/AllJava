@@ -1,39 +1,47 @@
 package com.practice.service.impl;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.practice.exception.ResourceNotFoundException;
 import com.practice.model.Customer;
 import com.practice.model.Orders;
+import com.practice.payloads.OrderDto;
 import com.practice.repo.CustomerDao;
 import com.practice.repo.OrdersDao;
 import com.practice.service.OrderService;
 
 @Service
-public class OrdersImpl implements OrderService{
-	
+public class OrdersImpl implements OrderService {
+
 	@Autowired
 	private OrdersDao orderDao;
 
+	@Autowired
+	private ModelMapper modelMapper;
+
 	@Override
-	public Orders createOrders(Orders order) {
-		Orders save = this.orderDao.save(order);
-		return save;
+	public OrderDto createOrders(OrderDto order) {
+		Orders map = this.modelMapper.map(order, Orders.class);
+		Orders save = this.orderDao.save(map);
+		return this.modelMapper.map(save, OrderDto.class);
 	}
 
 	@Override
-	public Orders updateOrders(int o_id, Orders order) {
+	public OrderDto updateOrders(int o_id, OrderDto order) {
 		Orders findById = this.orderDao.findById(o_id)
 				.orElseThrow(() -> new ResourceNotFoundException("Orders", "OrdersId", o_id));
 
 		findById.setStart_date(order.getStart_date());
 		findById.setEnd_date(order.getEnd_date());
 
-		Orders saveCust = this.orderDao.save(order);
-		return saveCust;
+		Orders map = this.modelMapper.map(findById, Orders.class);
+		Orders saveCust = this.orderDao.save(map);
+		return this.modelMapper.map(saveCust, OrderDto.class);
 	}
 
 	@Override
@@ -44,15 +52,19 @@ public class OrdersImpl implements OrderService{
 	}
 
 	@Override
-	public List<Orders> getAllOrders() {
+	public List<OrderDto> getAllOrders() {
 		List<Orders> findAll = this.orderDao.findAll();
-		return findAll;
+		List<OrderDto> collect = findAll
+				.stream()
+				.map((order)->this.modelMapper.map(findAll, OrderDto.class))
+				.collect(Collectors.toList());
+		return collect;
 	}
 
 	@Override
-	public Orders getOneOrder(int o_id) {
+	public OrderDto getOneOrder(int o_id) {
 		Orders cust = this.orderDao.findById(o_id)
 				.orElseThrow(() -> new ResourceNotFoundException("Orders", "OrdersId", o_id));
-		return cust;
+		return this.modelMapper.map(cust,OrderDto.class);
 	}
 }

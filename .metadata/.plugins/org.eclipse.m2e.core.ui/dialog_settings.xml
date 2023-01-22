@@ -2,6 +2,7 @@
 <section name="Workbench">
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="C:\Users\vedant.zanjad\Documents\workspace-spring-tool-suite-4-4.16.0.RELEASE\innoventes-springboot-test-j8-2022jsbp01-master"/>
 			<item value="C:\Users\vedant.zanjad\Documents\workspace-spring-tool-suite-4-4.16.0.RELEASE\HibernateDemo"/>
 			<item value="C:\Users\vedant.zanjad\Documents\workspace-spring-tool-suite-4-4.16.0.RELEASE\HibernateWithMaven"/>
 			<item value="D:\SpringMvcWithOrm"/>
@@ -16,7 +17,6 @@
 			<item value="D:\OPHS-Online-Patient-History-System"/>
 			<item value="D:\phs"/>
 			<item value="D:\PHS-Online-Patient-History-System"/>
-			<item value="C:\Users\vedant.zanjad\Downloads\SpringMVC_CRUD-Operation"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
