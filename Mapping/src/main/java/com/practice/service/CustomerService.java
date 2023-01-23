@@ -2,6 +2,9 @@ package com.practice.service;
 
 import java.util.List;
 import java.util.Map;
+
+import com.practice.model.Customer;
+import com.practice.model.Orders;
 import com.practice.payloads.CustomerDto;
 import com.practice.payloads.CustomerResponse;
 
@@ -27,6 +30,6 @@ public interface CustomerService {
 
 	List<CustomerDto> getCustNameLike(String keyword);
 
-	public CustomerDto UpdateCustomerByFields(int cust_id, Map<String, Object> fields);
+	public CustomerDto UpdateCustomerByFields(int cust_id,CustomerDto fields);
 
 }

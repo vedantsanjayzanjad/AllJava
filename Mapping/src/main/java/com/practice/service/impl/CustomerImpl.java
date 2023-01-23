@@ -145,17 +145,10 @@ public class CustomerImpl implements CustomerService {
 	}
 
 	@Override
-	public CustomerDto UpdateCustomerByFields(int cust_id, Map<String, Object> fields) {
-		Optional<Customer> existingCustomer = this.customerDao.findById(cust_id);
-		if (existingCustomer.isPresent()) {
-			fields.forEach((key, value) -> {
-				Field field = ReflectionUtils.findRequiredField(Customer.class, key);
-				field.setAccessible(true);
-				ReflectionUtils.setField(field, existingCustomer.get(), value);
-			});
-			this.customerDao.save(existingCustomer.get());
-			return this.modelMapper.map(existingCustomer, CustomerDto.class);
-		}
-		return null;
+	public CustomerDto UpdateCustomerByFields(int cust_id, CustomerDto fields) {
+		Customer existingCustomer = this.customerDao.findById(cust_id).get();
+		existingCustomer.setOrder(fields.getOrder());
+		this.customerDao.save(existingCustomer);
+		return this.modelMapper.map(existingCustomer, CustomerDto.class);
 	}
 }

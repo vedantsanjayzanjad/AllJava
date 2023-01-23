@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.practice.model.Customer;
+import com.practice.model.Orders;
 import com.practice.payloads.ApiResponse;
 import com.practice.payloads.AppConstant;
 import com.practice.payloads.CustomerDto;
@@ -98,7 +99,7 @@ public class CustomerController {
 	
 	@PatchMapping("/partial/{cust_id}")
 	public ResponseEntity<CustomerDto> getPartialUpdateOfCustomer
-	(@PathVariable int cust_id, @RequestBody Map<String,Object> fields)
+	(@PathVariable int cust_id, @RequestBody CustomerDto fields)
 	{
 		CustomerDto updateCustomer  = this.custServ.UpdateCustomerByFields(cust_id,fields);
 		return new ResponseEntity<CustomerDto>(updateCustomer,HttpStatus.OK);

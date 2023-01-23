@@ -19,6 +19,8 @@ public class CustomerDto {
 
 	private String custGender;
 	
+	private int custSalary;
+	
 	private Orders order;
 	
 	
