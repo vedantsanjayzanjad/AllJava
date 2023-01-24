@@ -27,6 +27,7 @@ public class OrdersImpl implements OrderService {
 	@Override
 	public OrderDto createOrders(OrderDto order) {
 		Orders map = this.modelMapper.map(order, Orders.class);
+		map.setCust(order.getCust());
 		Orders save = this.orderDao.save(map);
 		return this.modelMapper.map(save, OrderDto.class);
 	}
@@ -38,6 +39,7 @@ public class OrdersImpl implements OrderService {
 
 		findById.setStart_date(order.getStart_date());
 		findById.setEnd_date(order.getEnd_date());
+		findById.setCust(order.getCust());
 
 		Orders map = this.modelMapper.map(findById, Orders.class);
 		Orders saveCust = this.orderDao.save(map);
@@ -56,7 +58,7 @@ public class OrdersImpl implements OrderService {
 		List<Orders> findAll = this.orderDao.findAll();
 		List<OrderDto> collect = findAll
 				.stream()
-				.map((order)->this.modelMapper.map(findAll, OrderDto.class))
+				.map((order)->this.modelMapper.map(order, OrderDto.class))
 				.collect(Collectors.toList());
 		return collect;
 	}

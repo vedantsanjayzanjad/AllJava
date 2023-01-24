@@ -1,7 +1,13 @@
 package com.practice.model;
+import java.util.ArrayList;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import org.hibernate.annotations.ManyToAny;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.practice.customannotation.EvenOrNull;
 
@@ -13,7 +19,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Max;
@@ -54,8 +62,24 @@ public class Customer {
 	@EvenOrNull//custom anotation
 	private int custSalary;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JsonManagedReference
-	@JoinColumn(name = "order_id", referencedColumnName = "o_id")
-	private Orders order;
+//	@OneToOne(cascade = CascadeType.ALL)
+//	@JsonManagedReference
+//	@JoinColumn(name = "order_id", referencedColumnName = "o_id")
+//	private Orders order;
+	
+//	@ManyToOne(cascade = CascadeType.ALL)
+//	@JoinColumn(name = "order_id", referencedColumnName = "o_id")
+//	@JsonBackReference
+//	private Orders order;
+	
+	
+//	@OneToMany(mappedBy = "cust")
+//	@JsonBackReference
+//	private Set<Orders> order = new HashSet<>();
+	
+	
+	@ManyToMany(mappedBy = "cust",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	@JsonBackReference
+	private Set<Orders> order = new HashSet<>();
+	
 }

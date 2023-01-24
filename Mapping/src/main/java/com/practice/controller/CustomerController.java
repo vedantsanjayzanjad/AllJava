@@ -104,5 +104,4 @@ public class CustomerController {
 		CustomerDto updateCustomer  = this.custServ.UpdateCustomerByFields(cust_id,fields);
 		return new ResponseEntity<CustomerDto>(updateCustomer,HttpStatus.OK);
 	}
-
 }

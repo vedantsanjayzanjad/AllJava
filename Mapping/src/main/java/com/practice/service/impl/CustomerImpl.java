@@ -1,21 +1,14 @@
 package com.practice.service.impl;
-
-import java.lang.reflect.Field;
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.util.ReflectionUtils;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import com.practice.exception.ResourceNotFoundException;
 import com.practice.model.Customer;
 import com.practice.model.Orders;
@@ -45,7 +38,7 @@ public class CustomerImpl implements CustomerService {
 				.orElseThrow(() -> new ResourceNotFoundException("Orders", "OrderId", o_id));
 
 		Customer map = this.modelMapper.map(cust, Customer.class);
-		map.setOrder(order);
+	    map.setOrder(cust.getOrder());
 		Customer save = this.customerDao.save(map);
 		return this.modelMapper.map(save, CustomerDto.class);
 	}
@@ -66,7 +59,7 @@ public class CustomerImpl implements CustomerService {
 				.orElseThrow(() -> new ResourceNotFoundException("Orders", "OrderId", o_id));
 		findById.setCustName(cust.getCustName());
 		findById.setCustGender(cust.getCustGender());
-		findById.setOrder(order);
+		findById.setOrder(cust.getOrder());
 		Customer saveCust = this.customerDao.save(findById);
 		return this.modelMapper.map(saveCust, CustomerDto.class);
 	}
@@ -147,6 +140,8 @@ public class CustomerImpl implements CustomerService {
 	@Override
 	public CustomerDto UpdateCustomerByFields(int cust_id, CustomerDto fields) {
 		Customer existingCustomer = this.customerDao.findById(cust_id).get();
+		existingCustomer.setCustName(fields.getCustName());
+		existingCustomer.setCustGender(fields.getCustGender());
 		existingCustomer.setOrder(fields.getOrder());
 		this.customerDao.save(existingCustomer);
 		return this.modelMapper.map(existingCustomer, CustomerDto.class);
