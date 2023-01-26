@@ -1,4 +1,5 @@
 package com.practice.model;
+
 import java.util.ArrayList;
 
 import java.util.HashSet;
@@ -49,37 +50,35 @@ public class Customer {
 	private int custId;
 
 	@NotEmpty(message = "Customer Name Should Not Empyt")
-	@Column(name = "custName",length = 5)
-	@Pattern(regexp ="[A-Z]{2}+[0-2]{2}+[E/N]{1}")
+	@Column(name = "custName", length = 5)
+	@Pattern(regexp = "[A-Z]{2}+[0-2]{2}+[E/N]{1}")
 	private String custName;
 
 	@NotEmpty(message = "Customer Gender Should Not Empyt")
 	@Column(name = "custGender")
-	@Size(min = 4,max = 6)
+	@Size(min = 4, max = 6)
 	private String custGender;
 
-	@Column(name ="custSalary")
-	@EvenOrNull//custom anotation
+	@Column(name = "custSalary")
+	@EvenOrNull // custom anotation
 	private int custSalary;
 
 //	@OneToOne(cascade = CascadeType.ALL)
 //	@JsonManagedReference
 //	@JoinColumn(name = "order_id", referencedColumnName = "o_id")
 //	private Orders order;
-	
+
 //	@ManyToOne(cascade = CascadeType.ALL)
 //	@JoinColumn(name = "order_id", referencedColumnName = "o_id")
 //	@JsonBackReference
 //	private Orders order;
-	
-	
+
 //	@OneToMany(mappedBy = "cust")
 //	@JsonBackReference
 //	private Set<Orders> order = new HashSet<>();
-	
-	
-	@ManyToMany(mappedBy = "cust",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+
+	@ManyToMany(mappedBy = "cust",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
 	@JsonBackReference
 	private Set<Orders> order = new HashSet<>();
-	
+
 }

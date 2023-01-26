@@ -1,10 +1,8 @@
 package com.practice.model;
 import java.time.LocalDate;
-
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
-
 import org.modelmapper.internal.bytebuddy.asm.Advice.Local;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -63,7 +61,13 @@ public class Orders {
 //	@JsonBackReference
 //	private Customer cust;
 
-	@ManyToMany
+	@ManyToMany(cascade = CascadeType.ALL)
 	@JsonBackReference
+	@jakarta.persistence.JoinTable
+	(
+	name = "orders_cust",
+	joinColumns = @JoinColumn(name = "orders", referencedColumnName = "o_id"),
+	inverseJoinColumns = @JoinColumn(name = "customer", referencedColumnName = "custId")
+	)
 	private Set<Customer> cust = new HashSet<>();
 }
