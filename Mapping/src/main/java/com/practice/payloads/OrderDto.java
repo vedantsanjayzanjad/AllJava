@@ -33,8 +33,8 @@ public class OrderDto
 	
 //	private Set<Customer> cust = new HashSet<>();
 	
-//	private Customer cust;
+	private Customer cust;
 	
-	private Set<Customer> cust = new HashSet<>();
+//	private Set<Customer> cust = new HashSet<>();
 	
 }

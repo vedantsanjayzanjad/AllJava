@@ -28,9 +28,11 @@ public class CustomerDto {
 	private String custGender;
 
 	private int custSalary;
-
-//	private Orders order;
 	
-	private Set<Orders> order = new HashSet<>();
+	private String fileName;
+
+	private Orders order;
+	
+//	private Set<Orders> order = new HashSet<>();
 	
 }

@@ -1,0 +1,344 @@
+ select * from employee;
++--------+-----------+-------------+------------+------------+------------+
+| emp_id | emp_name  | emp_city    | emp_gender | emp_status | emp_salary |
++--------+-----------+-------------+------------+------------+------------+
+|      1 | vedant    | pune        | male       | Single     |       4567 |
+|      2 | jaydip    | amravati    | male       | Single     |       2357 |
+|      3 | gajanan   | aurangabad  | male       | married    |       7890 |
+|      4 | Kumar     | Pune        | male       | married    |       6780 |
+|      5 | Khushboo  | Amravti     | female     | single     |      22230 |
+|      6 | tejas     | Mumbai      | male       | single     |       6576 |
+|      7 | asmita    | shegaon     | female     | single     |       5676 |
+|      8 | shubhangi | nanded      | female     | single     |       1676 |
+|     10 | aditya    | omkareshwar | gay        | NULL       |      62343 |
++--------+-----------+-------------+------------+------------+------------+
+
+ select * from orders;
++------+--------+--------+
+| o_id | o_info | emp_id |
++------+--------+--------+
+|    1 | Nokia  |      1 |
+|    2 | Nokia  |      3 |
+|    3 | Nokia  |      6 |
+|    4 | Nokia  |      2 |
+|    5 | Nokia  |      4 |
+|    6 | Nokia  |      8 |
+|    7 | Nokia  |      5 |
++------+--------+--------+
+
+An SQL Join statement is used to combine data or rows from two or more tables based on a common field between them.
+A subquery is a query that is nested inside a SELECT , INSERT , UPDATE , or DELETE statement, or inside another subquery.
+
+All SQL QUERY :::
+
+1)Distinct
+SELECT DISTINCT Country FROM Customers;
+SELECT COUNT(DISTINCT Country) FROM Customers;
+
+2)And Not Or
+
+select emp_name from employee where emp_id >= 3 and emp_city = "amravati";
+select emp_name from employee where emp_id >= 2 or emp_city = "nanded";
+select emp_name from employee where not emp_city = "shegaon"
+select * from employee where emp_city = "shegaon" and (emp_gender = "male" or emp_gender="female");
+select * from employee where not emp_city = "shegaon" and not (emp_gender = "male" or emp_gender="female");
+
+
+
+3)Order by
+
+select * from employee order by emp_salary asc; 
+if u not mention asc and desc it will consider asc.
+
+select * from employee order by emp_salary desc;
+select * from employee order by emp_salary, emp_name;
+first followed the emp_salary but any data ius common then it will foloow the emp_name;
+
+select * from employee order by emp_salary desc, emp_name desc;
+
+
+4)Null or Not Null
+
+select * from employee where emp_status is null;
+
+select * from employee where emp_status is not null;
+
+
+5)Update
+update employee set emp_status =null, emp_name = "Nobody" where emp_id=10;
+
+6)delete
+delete from employee where emp_name = "sachin";
+delete from employee where emp_id = 10;
+
+7)Limit
+select * from employee limit 3;
+First Three record
+
+select * from employee where emp_city ="pune" limit 2;
+First three record of the pune city
+
+Aggregate Function
+
+8)Max and Min
+select max(emp_salary) from employee;
+select min(emp_salary) from employee;
+select max(emp_salary) from employee where emp_city = "Pune";
+select min(emp_salary) from employee where emp_city<>"nanded"; not equal <>
+
+9)Count
+select count(emp_salary) from employee where emp_city = "pune";
+
+10)Average
+select avg(emp_salary) from employee where emp_city = "pune";
+
+11)Sum
+select sum(emp_salary) from employee where emp_city = "pune";
+
+
+12)Like
+select * from employee where emp_name like "v%"; 
+will give all info where emp_name starts with v
+
+select * from employee where emp_name like "%v";
+will give all info where emp_name ends with v
+
+select * from employee where emp_name like "%k%";
+will return name starts with or ends with k
+
+
+select * from employee where emp_name like "_e%";
+will return all where e is second position on name
+
+
+select * from employee where emp_name like "a__%"
+that starts with "a" and are at least 3 characters in length:
+
+select * from employee where emp_name like "a%a";
+start with a and end with a
+ 
+select * from employee where emp_name not like "k%_";
+will not starts with k
+
+13)
+A wildcard character is used to substitute one or more characters in a string.
+Wildcard characters are used with the LIKE operator. 
+The LIKE operator is used in a WHERE clause to search for a specified pattern in a column.
+
+select * from employee where emp_city like "pu%"; 
+it will retruns all city name which starts from pu.
+
+
+select * from employee where emp_city like "%pu%";
+it will return the pattern like pu.
+
+
+select * from employee where emp_city like "_une";
+it will return the pattern une 
+
+
+14)
+The MySQL IN Operator
+The IN operator allows you to specify multiple values in a WHERE clause.
+The IN operator is a shorthand for multiple OR conditions.
+
+select * from employee where emp_city in ('pune','amravati','nanded');
+will retrun belonging to the special categories
+
+select * from employee where emp_city not in ('pune','amravati','nanded');
+will not retrun belonging to the special categories
+
+SELECT * FROM Customers
+WHERE Country IN (SELECT Country FROM Suppliers);
+
+15)Between
+select * from employee where emp_salary between 1000 and 2000;
+will return all employee between that salary
+
+
+select * from employee where emp_salary between 1000 and 2000;
+will return not between 1000 and 200
+
+select * from employee where emp_salary between 1000 and 2000 and emp_id not in (7,9);
+will return 1000 and 2000 and not in id 7,9
+
+
+select * from employee where emp_id between  4 and 8 order by emp_id;
+will show employee from 4 to 8
+
+select * from employee where emp_id not between 4 and 8 order by emp_id;
+will not show employee between 4 to 8
+
+16)Aliases
+select emp_id as id,emp_name as name,emp_city as city,emp_gender as gender,emp_status as status from employee;
+will give temperory name to the column
+
+select emp_id as id, concat_ws(',',emp_city,emp_gender,emp_status) as address from employee;
+will return concated columns
+
+
+
+17)Joins:-
+  self join
+select a.emp_city,a.emp_name from employee a,employee b where a.emp_id<>b.emp_id and a.emp_gender='male' or b.emp_gender='female';
+
+inner,right,left
+ select * from employee join orders on employee.emp_id=orders.emp_id;
+right - will return all data of right table and left of matching only 
+left - right - will return all data of lefttable and right of matching only 
+inner- will return all the matching data of both tables
+
+cross or CARTESIAN JOIN 
+The CROSS JOIN keyword returns all matching records from both tables whether the other table matches or not. So, if there are rows in "Customers" that do not have matches in "Orders",
+or if there are rows in "Orders" that do not have matches in "Customers", those rows will be listed as well.
+If you add a WHERE clause (if table1 and table2 has a relationship), the CROSS JOIN will produce the same result as the INNER JOIN clause:
+
+18)Union
+
+The following SQL statement returns the cities (only distinct values)
+from both the "Customers" and the "Suppliers" table:
+SELECT City FROM Customers
+UNION
+SELECT City FROM Suppliers
+ORDER BY City;
+
+
+The following SQL statement returns the cities (duplicate values also) from both the "Customers" and the "Suppliers" table:
+SELECT City FROM Customers
+UNION ALL
+SELECT City FROM Suppliers
+ORDER BY City;
+
+The following SQL statement returns the German cities (only distinct values) from both the "Customers" and the "Suppliers" table:
+SELECT City, Country FROM Customers
+WHERE Country='Germany'
+UNION
+SELECT City, Country FROM Suppliers
+WHERE Country='Germany'
+ORDER BY City;
+
+19)group by
+
+select count(emp_city),emp_name from employee group by emp_city;
+
+| count(emp_city) | emp_name  |
++-----------------+-----------+
+|               2 | vedant    |
+|               1 | jaydip    |
+|               1 | gajanan   |
+|               1 | Khushboo  |
+|               1 | tejas     |
+|               1 | asmita    |
+|               1 | shubhangi |
+|               1 | aditya    |
++-----------------+-----------+
+group by city means it will display all the city distincly and will gave the count of emp_city
+
+
+select count(emp_city),emp_name from employee group by emp_status having count(emp_city)>1;
++-----------------+----------+
+| count(emp_city) | emp_name |
++-----------------+----------+
+|               6 | vedant   |
+|               2 | gajanan  |
++-----------------+----------+
+
+20)Exists
+
+The EXISTS operator is used to test for the existence of any record in a subquery.
+
+The EXISTS operator returns TRUE if the subquery returns one or more records.
+
+
+1)select * from orders where exists (select * from employee where employee.emp_id = orders.emp_id and emp_salary > 5000);
++------+--------+--------+
+| o_id | o_info | emp_id |
++------+--------+--------+
+|    2 | Nokia  |      3 |
+|    5 | Nokia  |      4 |
+|    7 | Nokia  |      5 |
+|    3 | Nokia  |      6 |
++------+--------+--------+
+4 rows in set (0.00 sec)
+
+2)select * from employee e,orders o where exists (select * from orders  where e.emp_id = o.emp_id);
++--------+-----------+------------+------------+------------+------------+------+--------+--------+
+| emp_id | emp_name  | emp_city   | emp_gender | emp_status | emp_salary | o_id | o_info | emp_id |
++--------+-----------+------------+------------+------------+------------+------+--------+--------+
+|      1 | vedant    | pune       | male       | Single     |       4567 |    1 | Nokia  |      1 |
+|      3 | gajanan   | aurangabad | male       | married    |       7890 |    2 | Nokia  |      3 |
+|      6 | tejas     | Mumbai     | male       | single     |       6576 |    3 | Nokia  |      6 |
+|      2 | jaydip    | amravati   | male       | Single     |       2357 |    4 | Nokia  |      2 |
+|      4 | Kumar     | Pune       | male       | married    |       6780 |    5 | Nokia  |      4 |
+|      8 | shubhangi | nanded     | female     | single     |       1676 |    6 | Nokia  |      8 |
+|      5 | Khushboo  | Amravti    | female     | single     |      22230 |    7 | Nokia  |      5 |
++--------+-----------+------------+------------+------------+------------+------+--------+--------+
+
+
+21)The ANY operator:
+
+returns a boolean value as a result
+returns TRUE if ANY of the subquery values meet the condition
+
+select emp_name from employee where emp_id = any (select emp_id from orders where emp_salary < 8000);
++-----------+
+| emp_name  |
++-----------+
+| vedant    |
+| jaydip    |
+| gajanan   |
+| Kumar     |
+| tejas     |
+| shubhangi |
++-----------+
+
+DDL
+
+1)Alter
+
+1)alter table employee add emp_ok varchar(20);
+Query OK, 0 rows affected (0.15 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee;
++--------+-----------+-------------+------------+------------+------------+--------+
+| emp_id | emp_name  | emp_city    | emp_gender | emp_status | emp_salary | emp_ok |
++--------+-----------+-------------+------------+------------+------------+--------+
+|      1 | vedant    | pune        | male       | Single     |       4567 | NULL   |
+|      2 | jaydip    | amravati    | male       | Single     |       2357 | NULL   |
+|      3 | gajanan   | aurangabad  | male       | married    |       7890 | NULL   |
+|      4 | Kumar     | Pune        | male       | married    |       6780 | NULL   |
+|      5 | Khushboo  | Amravti     | female     | single     |      22230 | NULL   |
+|      6 | tejas     | Mumbai      | male       | single     |       6576 | NULL   |
+|      7 | asmita    | shegaon     | female     | single     |       5676 | NULL   |
+|      8 | shubhangi | nanded      | female     | single     |       1676 | NULL   |
+|     10 | aditya    | omkareshwar | gay        | NULL       |      62343 | NULL   |
++--------+-----------+-------------+------------+------------+------------+--------+
+
+2)alter table employee drop column emp_ok;
+3)alter table employee modify column emp_name varchar(20);
+
+2)SQL constraints are used to specify rules for the data in a table.
+
+
+3)Unique
+The UNIQUE constraint ensures that all values in a column are different.
+Both the UNIQUE and PRIMARY KEY constraints provide a guarantee for uniqueness for a column or set of columns.
+A PRIMARY KEY constraint automatically has a UNIQUE constraint.
+However, you can have many UNIQUE constraints per table, but only one PRIMARY KEY constraint per table.
+
+alter table employee modify column emp_name varchar(20) unique;
+
+4)Unique Constraint
+it is used while creation of table and can aslo the alter command.
+alter table employee add constraint uc_employee unique (emp_id,emp_name);
+
+To drop a UNIQUE constraint, use the following SQL:
+alter table employee drop index uc_employee;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+Remaining 
+index
+check 
+views

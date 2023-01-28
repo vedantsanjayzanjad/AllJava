@@ -1,5 +1,6 @@
 package com.practice.model;
 import java.time.LocalDate;
+
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -12,10 +13,12 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
@@ -47,9 +50,9 @@ public class Orders {
 	@NotEmpty(message = "End Date Should Not Empyt")
 	private String end_date;
 	
-//	@OneToOne(mappedBy = "order")
-//	@JsonBackReference
-//	private Customer cust;
+	@OneToOne(mappedBy = "order")
+	@JsonBackReference
+	private Customer cust;
 	
 //	@OneToMany(mappedBy = "order",cascade = CascadeType.ALL)
 //	@JsonBackReference
@@ -61,13 +64,13 @@ public class Orders {
 //	@JsonBackReference
 //	private Customer cust;
 
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JsonBackReference
-	@jakarta.persistence.JoinTable
-	(
-	name = "orders_cust",
-	joinColumns = @JoinColumn(name = "orders", referencedColumnName = "o_id"),
-	inverseJoinColumns = @JoinColumn(name = "customer", referencedColumnName = "custId")
-	)
-	private Set<Customer> cust = new HashSet<>();
+//	@ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+//	@JsonBackReference
+//	@JoinTable
+//	(
+//	name = "orders_cust",
+//	joinColumns = {@JoinColumn(name = "orders", referencedColumnName = "o_id")},
+//	inverseJoinColumns = {@JoinColumn(name = "cust", referencedColumnName = "custId")}
+//	)
+//	private Set<Customer> cust = new HashSet<>();
 }

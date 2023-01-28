@@ -38,7 +38,8 @@ public class CustomerImpl implements CustomerService {
 				.orElseThrow(() -> new ResourceNotFoundException("Orders", "OrderId", o_id));
 
 		Customer map = this.modelMapper.map(cust, Customer.class);
-	    map.setOrder(cust.getOrder());
+		map.setOrder(order);
+		map.setFileName("default.png");
 		Customer save = this.customerDao.save(map);
 		return this.modelMapper.map(save, CustomerDto.class);
 	}
@@ -47,6 +48,7 @@ public class CustomerImpl implements CustomerService {
 	public CustomerDto createCustomersOnly(@Valid CustomerDto cust) {
 
 		Customer map = this.modelMapper.map(cust, Customer.class);
+		map.setFileName("default.png");
 		Customer save = this.customerDao.save(map);
 		return this.modelMapper.map(save, CustomerDto.class);
 	}
@@ -59,7 +61,8 @@ public class CustomerImpl implements CustomerService {
 				.orElseThrow(() -> new ResourceNotFoundException("Orders", "OrderId", o_id));
 		findById.setCustName(cust.getCustName());
 		findById.setCustGender(cust.getCustGender());
-		findById.setOrder(cust.getOrder());
+		findById.setFileName(cust.getFileName());
+		findById.setOrder(order);
 		Customer saveCust = this.customerDao.save(findById);
 		return this.modelMapper.map(saveCust, CustomerDto.class);
 	}
@@ -131,6 +134,7 @@ public class CustomerImpl implements CustomerService {
 		orElseThrow.setCustName(cust.getCustName());
 		orElseThrow.setCustGender(cust.getCustGender());
 		orElseThrow.setOrder(cust.getOrder());
+		orElseThrow.setFileName(cust.getFileName());
 		Customer saveCust = this.customerDao.save(orElseThrow);
 		CustomerDto map = this.modelMapper.map(saveCust, CustomerDto.class);
 		return map;
@@ -142,6 +146,7 @@ public class CustomerImpl implements CustomerService {
 		Customer existingCustomer = this.customerDao.findById(cust_id).get();
 		existingCustomer.setCustName(fields.getCustName());
 		existingCustomer.setCustGender(fields.getCustGender());
+		existingCustomer.setCustGender(fields.getFileName());
 		existingCustomer.setOrder(fields.getOrder());
 		this.customerDao.save(existingCustomer);
 		return this.modelMapper.map(existingCustomer, CustomerDto.class);

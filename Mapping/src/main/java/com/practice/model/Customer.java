@@ -20,6 +20,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
@@ -45,6 +46,7 @@ import lombok.ToString;
 @ToString
 @Entity
 public class Customer {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int custId;
@@ -62,11 +64,14 @@ public class Customer {
 	@Column(name = "custSalary")
 	@EvenOrNull // custom anotation
 	private int custSalary;
+	
+	@Column(name = "fileName")
+	private String fileName;
 
-//	@OneToOne(cascade = CascadeType.ALL)
-//	@JsonManagedReference
-//	@JoinColumn(name = "order_id", referencedColumnName = "o_id")
-//	private Orders order;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JsonManagedReference
+	@JoinColumn(name = "order_id", referencedColumnName = "o_id")
+	private Orders order;
 
 //	@ManyToOne(cascade = CascadeType.ALL)
 //	@JoinColumn(name = "order_id", referencedColumnName = "o_id")
@@ -77,8 +82,14 @@ public class Customer {
 //	@JsonBackReference
 //	private Set<Orders> order = new HashSet<>();
 
-	@ManyToMany(mappedBy = "cust",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
-	@JsonBackReference
-	private Set<Orders> order = new HashSet<>();
+//	@ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+//	@JsonBackReference
+//	@JoinTable
+//	(
+//	name = "orders_cust",
+//	joinColumns = {@JoinColumn(name = "cust", referencedColumnName = "custId")},
+//	inverseJoinColumns = {@JoinColumn(name = "orders", referencedColumnName = "o_id")}
+//	)
+//	private Set<Orders> order = new HashSet<>();
 
 }

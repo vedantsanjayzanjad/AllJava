@@ -1,11 +1,13 @@
 package com.practice.controller;
-
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -16,13 +18,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import com.practice.model.Customer;
-import com.practice.model.Orders;
+import org.springframework.web.multipart.MultipartFile;
 import com.practice.payloads.ApiResponse;
 import com.practice.payloads.AppConstant;
 import com.practice.payloads.CustomerDto;
 import com.practice.payloads.CustomerResponse;
 import com.practice.service.CustomerService;
+import com.practice.service.FileService;
+
+import jakarta.servlet.http.HttpServletResponse;
 
 @RestController
 @RequestMapping("/customer")
@@ -30,6 +34,12 @@ public class CustomerController {
 
 	@Autowired
 	private CustomerService custServ;
+	
+	@Autowired
+	private FileService fileService;
+	
+	@Value("${project.image}")
+	private String path;
 
 	@PostMapping("/cust/{o_id}")
 	public ResponseEntity<CustomerDto> saveCustomer(@RequestBody CustomerDto cust, @PathVariable int o_id) {
@@ -104,4 +114,31 @@ public class CustomerController {
 		CustomerDto updateCustomer  = this.custServ.UpdateCustomerByFields(cust_id,fields);
 		return new ResponseEntity<CustomerDto>(updateCustomer,HttpStatus.OK);
 	}
+	
+	@PostMapping("/image/upload/{custId}")
+	public ResponseEntity<CustomerDto> uploadPostImage(@RequestParam("image") MultipartFile file,
+			@PathVariable Integer custId) throws IOException {
+		CustomerDto custDto = this.custServ.getOnecustomer(custId);
+		String fileName = this.fileService.uploadImage(path, file);
+		custDto.setFileName(fileName);
+		CustomerDto updatePost = this.custServ.updateCustomerAndOrder(custId, custDto);
+		return new ResponseEntity<CustomerDto>(updatePost, HttpStatus.OK);
+
+	}
+	
+
+    //method to serve files
+    @GetMapping(value = "/image/{imageName}",produces = MediaType.APPLICATION_PDF_VALUE)
+    public void downloadImage(
+            @PathVariable("imageName") String imageName,
+            HttpServletResponse response
+    ) throws IOException {
+
+        InputStream resource = this.fileService.getResource(path, imageName);
+        response.setContentType(MediaType.IMAGE_JPEG_VALUE);
+        StreamUtils.copy(resource,response.getOutputStream())   ;
+
+    }
+
+	
 }

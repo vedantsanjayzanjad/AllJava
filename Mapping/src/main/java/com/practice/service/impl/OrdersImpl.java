@@ -27,7 +27,7 @@ public class OrdersImpl implements OrderService {
 	@Override
 	public OrderDto createOrders(OrderDto order) {
 		Orders map = this.modelMapper.map(order, Orders.class);
-		order.setCust(map.getCust());
+		map.setCust(order.getCust());
 		Orders save = this.orderDao.save(map);
 		return this.modelMapper.map(save, OrderDto.class);
 	}
