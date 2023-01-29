@@ -4,6 +4,8 @@ import java.util.HashSet;
 
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.practice.model.Customer;
 import com.practice.model.Orders;
 
@@ -24,6 +26,8 @@ public class CustomerDto {
 	private int custId;
 
 	private String custName;
+	
+	private String password;
 
 	private String custGender;
 
@@ -34,5 +38,18 @@ public class CustomerDto {
 	private Orders order;
 	
 //	private Set<Orders> order = new HashSet<>();
+	
+	private Set<RoleDto> roles = new HashSet<>();
+	
+
+	@JsonIgnore
+	public String getPassword() {
+		return this.password;
+	}
+	
+	@JsonProperty
+	public void setPassword(String password) {
+		this.password=password;
+	}
 	
 }

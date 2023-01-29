@@ -8,6 +8,7 @@ import org.modelmapper.internal.bytebuddy.asm.Advice.Local;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonFormat.Shape;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
@@ -25,6 +26,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import jakarta.transaction.Transactional;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -38,6 +40,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 @Entity
+@Transactional
 public class Orders {
 
 	@Id
@@ -51,6 +54,7 @@ public class Orders {
 	private String end_date;
 	
 	@OneToOne(mappedBy = "order")
+	@JsonIgnore
 	@JsonBackReference
 	private Customer cust;
 	
