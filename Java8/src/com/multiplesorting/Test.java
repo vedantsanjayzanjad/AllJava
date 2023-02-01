@@ -25,9 +25,9 @@ public class Test {
 		System.out.println(collect);
 		
 		//All
-		
 		Object yes = list.stream().sorted(std.thenComparing(byId)).collect(Collectors.toList());
 		System.out.println(yes);
+		
 		
 	}
 }

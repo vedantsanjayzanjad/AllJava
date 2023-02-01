@@ -29,6 +29,4 @@ public class Test implements inter,interOne {
 		interOne i = new Test();
 		i.m2();
 	}
-	
-
 }

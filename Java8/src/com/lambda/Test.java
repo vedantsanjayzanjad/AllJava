@@ -34,8 +34,7 @@ public class Test {
 		interString l = () -> 
 		{
 			return "VEDANT";
-		};
-			
-		System.out.println(l.getString());
+		};	
+	System.out.println(l.getString());
 	}
 }

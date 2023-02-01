@@ -18,6 +18,5 @@ public class Test implements inter,interOne {
 	public static void main(String[] args) {
 		inter.m1();
 		interOne.m2();
-
 	}
 }
