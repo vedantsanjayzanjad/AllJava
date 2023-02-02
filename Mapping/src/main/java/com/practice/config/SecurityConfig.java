@@ -8,6 +8,8 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -25,8 +27,12 @@ import com.practice.security.CustomUserDetails;
 import com.practice.security.JwtAuthenticationEntryPoint;
 import com.practice.security.JwtAuthenticationFilter;
 
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity(prePostEnabled = true)
+@EnableWebMvc
 public class SecurityConfig {
 
 	@Autowired
@@ -38,6 +44,12 @@ public class SecurityConfig {
 	@Autowired
 	private JwtAuthenticationFilter jwtAuthenticationFilter;
 
+	
+	public static final String[] PUBLIC_URLS = {"/auth/**", "/v3/api-docs", "/v2/api-docs",
+            "/swagger-resources/**", "/swagger-ui/**", "/webjars/**"
+
+    }; 
+	
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
@@ -45,10 +57,10 @@ public class SecurityConfig {
          csrf()
          .disable()
          .authorizeHttpRequests()
-         .requestMatchers("/auth/login")
+         .requestMatchers(PUBLIC_URLS)
          .permitAll()
-//         .requestMatchers(HttpMethod.GET)
-//         .permitAll()
+         .requestMatchers(HttpMethod.GET)
+         .permitAll()
          .anyRequest()
          .authenticated()
          .and().exceptionHandling()

@@ -23,6 +23,8 @@ import com.practice.payloads.JwtAuthResponse;
 import com.practice.security.JwtTokenHelper;
 import com.practice.service.CustomerService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
@@ -39,6 +41,9 @@ public class AuthController {
 	
 	@Autowired
 	private ModelMapper mapper;
+	
+	@Autowired
+	private CustomerService custServ;
 
 	
 
@@ -68,4 +73,13 @@ public class AuthController {
 		}
 
 	}
+	
+	 @PostMapping("/register")
+	    public ResponseEntity<CustomerDto> registeredUser(@Valid @RequestBody CustomerDto customerDto)
+	    {
+	    	CustomerDto registeredUser = this.custServ.registeredUser(customerDto);
+	    	return new ResponseEntity<CustomerDto>(registeredUser,HttpStatus.CREATED);
+	    }
+
+		
 }

@@ -41,15 +41,4 @@ public class CustomerDto {
 	
 	private Set<RoleDto> roles = new HashSet<>();
 	
-
-	@JsonIgnore
-	public String getPassword() {
-		return this.password;
-	}
-	
-	@JsonProperty
-	public void setPassword(String password) {
-		this.password=password;
-	}
-	
 }

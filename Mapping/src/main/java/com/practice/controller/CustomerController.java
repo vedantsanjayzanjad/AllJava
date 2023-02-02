@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -69,7 +70,9 @@ public class CustomerController {
 		return new ResponseEntity<CustomerDto>(allCustomer, HttpStatus.FOUND);
 	}
 
+	
 	@DeleteMapping("/deleteCust/{cust_id}")
+	@PreAuthorize(value = "hasRole('ADMIN')")
 	public ResponseEntity<ApiResponse> deleteCustomer(@PathVariable int cust_id) {
 		this.custServ.deleteCustomer(cust_id);
 		return new ResponseEntity<ApiResponse>(new ApiResponse("customer is deleted !!!", true), HttpStatus.FOUND);
@@ -139,6 +142,6 @@ public class CustomerController {
         StreamUtils.copy(resource,response.getOutputStream())   ;
 
     }
-
-	
+    
+   
 }

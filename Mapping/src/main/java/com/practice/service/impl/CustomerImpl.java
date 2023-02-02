@@ -8,14 +8,18 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.practice.exception.ResourceNotFoundException;
 import com.practice.model.Customer;
 import com.practice.model.Orders;
+import com.practice.model.Role;
+import com.practice.payloads.AppConstant;
 import com.practice.payloads.CustomerDto;
 import com.practice.payloads.CustomerResponse;
 import com.practice.repo.CustomerDao;
 import com.practice.repo.OrdersDao;
+import com.practice.repo.RoleDao;
 import com.practice.service.CustomerService;
 
 import jakarta.validation.Valid;
@@ -31,6 +35,12 @@ public class CustomerImpl implements CustomerService {
 
 	@Autowired
 	private ModelMapper modelMapper;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
+	@Autowired
+	private RoleDao roleDao;
 
 	@Override
 	public CustomerDto createCustomers(@Valid CustomerDto cust, int o_id) {
@@ -150,5 +160,21 @@ public class CustomerImpl implements CustomerService {
 		existingCustomer.setOrder(fields.getOrder());
 		this.customerDao.save(existingCustomer);
 		return this.modelMapper.map(existingCustomer, CustomerDto.class);
+	}
+
+	@Override
+	public CustomerDto registeredUser(CustomerDto customerDto) {
+			
+		Customer customer = this.modelMapper.map(customerDto, Customer.class);
+		
+		customer.setPassword(this.passwordEncoder.encode(customer.getPassword()));
+		
+		Role role = this.roleDao.findById(AppConstant.ROLE_USER).get();
+		
+		customer.getRoles().add(role);
+		
+		Customer save = this.customerDao.save(customer);
+		
+	    return this.modelMapper.map(save, CustomerDto.class);
 	}
 }

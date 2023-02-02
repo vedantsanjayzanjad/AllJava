@@ -61,7 +61,6 @@ public class Customer implements UserDetails {
 	@Pattern(regexp = "[A-Z]{2}+[0-2]{2}+[E/N]{1}")
 	private String custName;
 
-	@Column(name = "password")
 	private String password;
 
 	@NotEmpty(message = "Customer Gender Should Not Empyt")

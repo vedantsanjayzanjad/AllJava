@@ -31,5 +31,7 @@ public interface CustomerService {
 	List<CustomerDto> getCustNameLike(String keyword);
 
 	public CustomerDto UpdateCustomerByFields(int cust_id,CustomerDto fields);
+	
+	public CustomerDto registeredUser(CustomerDto customerDto);
 
 }
