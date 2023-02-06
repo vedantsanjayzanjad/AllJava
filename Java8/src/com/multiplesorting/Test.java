@@ -10,8 +10,8 @@ public class Test {
 	public static void main(String[] args) {
 		List<Student> list = new ArrayList<Student>();
 		list.add(new Student(1,"Vedant",233));
-		list.add(new Student(2,"Akshay",234));
-		list.add(new Student(3,"Ajit",2334));
+		list.add(new Student(3,"Akshay",234));
+		list.add(new Student(2,"Ajit",2334));
 		
 		
 		//byName

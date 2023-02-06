@@ -3,6 +3,7 @@ package com.stream.realtime;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.DoubleSummaryStatistics;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.Optional;
@@ -185,6 +186,19 @@ class Employee {
 				System.out.println(e.getName());
 			}
 		}
+		
+//		Set<String> keySet = employeeListByDepartment.keySet();
+//		Iterator<String> iterator = keySet.iterator();
+//		while(iterator.hasNext())
+//		{
+//			String next = iterator.next();
+//			System.out.println(next);
+//			List<Employee> list = employeeListByDepartment.get(next);
+//			for(Employee e : list)
+//			{
+//				System.out.println(e.getName());
+//			}
+//		}
 
 		System.out.println("Eleven");
 		// What is the average salary and total salary of the whole organization?
@@ -242,5 +256,7 @@ class Employee {
 		System.out.println("Age : " + oldestEmployee.getAge());
 
 		System.out.println("Department : " + oldestEmployee.getDepartment());
+		
+				
 	}
 }

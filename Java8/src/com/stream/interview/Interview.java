@@ -11,6 +11,7 @@ import java.util.TreeSet;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
+import com.predicate.Employee;
 import com.stream.Distinct;
 
 class Customer {
@@ -81,12 +82,11 @@ class Customer {
 		{
 			List<Customer> list = getUnSortedCustomers();		
 			System.out.println(list);
-			 Set<Customer> collect = list
+			Set<Customer> collect = list
 		                .stream() // get stream for original list
 		                .collect(Collectors.toCollection(//distinct elements stored into new SET
 		                    () -> new TreeSet<>(Comparator.comparing(Customer::getCust_name)))
 		                        ); 
-			
 			System.out.println(collect);	
 		}
 	}
