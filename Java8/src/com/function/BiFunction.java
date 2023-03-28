@@ -10,6 +10,4 @@ public class BiFunction
 		this.empId = empId;
 		this.empName = empName;
 	}
-	
-	
 }

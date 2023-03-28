@@ -78,18 +78,6 @@ public class CustomerController {
 		return new ResponseEntity<ApiResponse>(new ApiResponse("customer is deleted !!!", true), HttpStatus.FOUND);
 	}
 
-	@PutMapping("/cust/{cust_id}/orders/{o_id}")
-	public ResponseEntity<CustomerDto> updateCustomer(@RequestBody CustomerDto cust, @PathVariable int cust_id,
-			@PathVariable int o_id) {
-		CustomerDto updateCustomer = this.custServ.updateCustomer(cust_id, cust, o_id);
-		return new ResponseEntity<CustomerDto>(updateCustomer, HttpStatus.OK);
-	}
-
-	@PutMapping("/cust/{cust_id}/orders")
-	public ResponseEntity<CustomerDto> updateCustomer(@RequestBody CustomerDto cust, @PathVariable int cust_id) {
-		CustomerDto updateCustomer = this.custServ.updateCustomerAndOrder(cust_id, cust);
-		return new ResponseEntity<CustomerDto>(updateCustomer, HttpStatus.OK);
-	}
 
 	@GetMapping("/{o_id}/orders")
 	public ResponseEntity<List<CustomerDto>> getOneCustomerByOrder(@PathVariable int o_id) {
@@ -110,6 +98,18 @@ public class CustomerController {
 	}
 	
 	
+	@PutMapping("/cust/{cust_id}/orders/{o_id}")
+	public ResponseEntity<CustomerDto> updateCustomer(@RequestBody CustomerDto cust, @PathVariable int cust_id,
+			@PathVariable int o_id) {
+		CustomerDto updateCustomer = this.custServ.updateCustomer(cust_id, cust, o_id);
+		return new ResponseEntity<CustomerDto>(updateCustomer, HttpStatus.OK);
+	}
+	
+	@PutMapping("/cust/{cust_id}/orders")
+	public ResponseEntity<CustomerDto> updateCustomer(@RequestBody CustomerDto cust, @PathVariable int cust_id) {
+		CustomerDto updateCustomer = this.custServ.updateCustomerAndOrder(cust_id, cust);
+		return new ResponseEntity<CustomerDto>(updateCustomer, HttpStatus.OK);
+	}
 	@PatchMapping("/partial/{cust_id}")
 	public ResponseEntity<CustomerDto> getPartialUpdateOfCustomer
 	(@PathVariable int cust_id, @RequestBody CustomerDto fields)

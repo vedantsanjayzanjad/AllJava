@@ -326,7 +326,6 @@ The UNIQUE constraint ensures that all values in a column are different.
 Both the UNIQUE and PRIMARY KEY constraints provide a guarantee for uniqueness for a column or set of columns.
 A PRIMARY KEY constraint automatically has a UNIQUE constraint.
 However, you can have many UNIQUE constraints per table, but only one PRIMARY KEY constraint per table.
-
 alter table employee modify column emp_name varchar(20) unique;
 
 4)Unique Constraint
@@ -337,6 +336,115 @@ To drop a UNIQUE constraint, use the following SQL:
 alter table employee drop index uc_employee;
 Query OK, 0 rows affected (0.01 sec)
 Records: 0  Duplicates: 0  Warnings: 0
+
+
+22)MySQL Trigger
+A trigger in MySQL is a set of SQL statements that reside in a system catalog. 
+It is a special type of stored procedure that is invoked automatically in response to an event. 
+Each trigger is associated with a table, which is activated on any DML statement such as INSERT, UPDATE, or DELETE.
+A trigger is called a special procedure because it cannot be called directly like a stored procedure.
+The main difference between the trigger and procedure is that a trigger is called automatically when a data modification event is made against a table.
+In contrast, a stored procedure must be called explicitly.
+Generally, triggers are of two types according to the SQL standard: row-level triggers and statement-level triggers.
+
+SYNTAX
+
+CREATE TRIGGER trigger_name  trigger_time trigger_event  
+ON table_name FOR EACH ROW  
+BEGIN  
+    --variable declarations  
+    --trigger code  
+END;    
+
+Create Trigger before_insert_empworkinghours   
+BEFORE INSERT ON employee FOR EACH ROW  
+BEGIN  
+IF NEW.working_hours < 0 THEN SET NEW.working_hours = 0;  
+END IF;  
+END
+
+23)Transcation
+
+A transaction in MySQL is a sequential group of statements, queries, or operations such as select, insert, update or delete to perform as a one single work unit that can be committed or rolled back. 
+If the transaction makes multiple modifications into the database, two things happen:
+Either all modification is successful when the transaction is committed.
+Or, all modifications are undone when the transaction is rollback.
+In other words, a transaction cannot be successful without completing each operation available in the set. 
+It means if any statement fails, the transaction operation cannot produce results.
+A transaction in MySQL starts with the first executable SQL statement and ends when it finds a commit or rolled back either explicitly or implicitly. 
+It explicitly uses COMMIT or ROLLBACK statement and implicitly when a DDL statement is used.
+
+E.G.
+- 1. Start a new transaction  
+  
+START TRANSACTION;  
+  
+-- 2. Get the highest income  
+  
+SELECT @income:= MAX(income) FROM employees;  
+  
+-- 3. Insert a new record into the employee table  
+  
+INSERT INTO employees(emp_id, emp_name, emp_age, city, income)   
+VALUES (111, 'Alexander', 45, 'California', 70000);  
+  
+-- 4. Insert a new record into the order table  
+  
+INSERT INTO Orders(order_id, prod_name, order_num, order_date)   
+VALUES (6, 'Printer', 5654, '2020-01-10');  
+  
+-- 5. Commit changes      
+COMMIT;  
+
+
+
+E.G.
+-- 1. Start a new transaction  
+START TRANSACTION;  
+  
+-- 2. Delete data from the order table  
+DELETE FROM Orders;  
+
+Although we have made changes in the first session, we still can see the records are available in the table. 
+It is because the changes are not permanent until we have not executed the COMMIT or ROLLBACK statement in the first session.
+
+
+SAVEPOINT, ROLLBACK TO SAVEPOINT, RELEASE SAVEPOINT
+The SAVEPOINT statement creates a special mark with the name of the identifier inside a transaction. 
+It allows all statements that are executed after savepoint would be rolled back. So that the transaction restores to the previous state it was in at the point of the savepoint. 
+If we have set multiple savepoints in the current transaction with the same name, the newly savepoint is responsible for rollback.
+The ROLLBACK TO SAVEPOINT statement allows us to rolls back all transactions to the given savepoint was established without aborting the transaction.
+The RELEASE SAVEPOINT statement destroys the named savepoint from the current transaction without undoing the effects of queries executed after the savepoint was established.
+ After these statements, no rollback command occurs. If the savepoint does not exist in the transaction, it gives an error
+
+START TRANSACTION;  
+  
+SELECT * FROM Orders;  
+  
+INSERT INTO Orders(order_id, prod_name, order_num, order_date)   
+VALUES (6, 'Printer', 5654, '2020-01-10');  
+  
+SAVEPOINT my_savepoint;  
+  
+INSERT INTO Orders(order_id, prod_name, order_num, order_date)   
+VALUES (7, 'Ink', 5894, '2020-03-10');  
+  
+ROLLBACK TO SAVEPOINT my_savepoint;  
+  
+INSERT INTO Orders(order_id, prod_name, order_num, order_date)   
+VALUES (8, 'Speaker', 6065, '2020-02-18');  
+  
+COMMIT;  
+
+
+In the above,
+
+We have to first begin the transaction and then show the records available in the Orders table.
+Next, we have inserted one record into the table and then creates a savepoint mark.
+Again, we have inserted one record into the table and then use a ROLLBACK TO SAVEPOINT statement to remove changes where the savepoint established.
+Again, we have inserted one record into the table.
+Finally, execute the COMMIT statement to make changes permanently.
+
 
 Remaining 
 index

@@ -1,5 +1,6 @@
 package com.practice.service.impl;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -37,8 +38,6 @@ public class OrdersImpl implements OrderService {
 		Orders findById = this.orderDao.findById(o_id)
 				.orElseThrow(() -> new ResourceNotFoundException("Orders", "OrdersId", o_id));
 
-		findById.setStart_date(order.getStart_date());
-		findById.setEnd_date(order.getEnd_date());
 		findById.setCust(order.getCust());
 
 		Orders map = this.modelMapper.map(findById, Orders.class);

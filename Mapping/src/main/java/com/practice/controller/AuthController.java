@@ -1,5 +1,5 @@
 package com.practice.controller;
-
+import org.apache.log4j.Logger;
 import org.modelmapper.ModelMapper;
 
 
@@ -46,13 +46,12 @@ public class AuthController {
 	private CustomerService custServ;
 
 	
-
+	
 	@PostMapping("/login")
 	public ResponseEntity<JwtAuthResponse> createToken(@RequestBody JwtAuthRequest request) throws Exception {
 		this.authenticate(request.getUsername(), request.getPassword());
 		UserDetails userDetails = this.userDetailsService.loadUserByUsername(request.getUsername());
 		String token = this.jwtTokenHelper.generateToken(userDetails);
-
 		JwtAuthResponse response = new JwtAuthResponse();
 		response.setToken(token);
 		response.setCust(this.mapper.map((Customer) userDetails, CustomerDto.class));
@@ -66,6 +65,7 @@ public class AuthController {
 		try {
 
 			this.authenticationManager.authenticate(authenticationToken);
+		
 
 		} catch (BadCredentialsException e) {
 			System.out.println("Invalid Detials !!");
