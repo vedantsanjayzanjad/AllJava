@@ -236,6 +236,8 @@ package test;
 
 import java.util.Arrays;
 
+package test;
+
 public class SingleLinkedList {
 
 	private ListNode head;
@@ -250,20 +252,31 @@ public class SingleLinkedList {
 		}
 	}
 
+	public void display() {
+		ListNode currentNode=head;
+		while(currentNode != null) {
+			System.out.print(currentNode.data + "--->");
+			currentNode = currentNode.next ;
+		}
+		System.out.println("null");
+	}
+
 	public static void main(String[] args) {
 		SingleLinkedList singleLinkedList = new SingleLinkedList();
 		singleLinkedList.head = new ListNode(10);
 		ListNode second = new ListNode(5);
 		ListNode third = new ListNode(9);
 		ListNode fourth = new ListNode(7);
-		
-		//Now will connect together them to form a chain
+
+		// Now will connect together them to form a chain
 		singleLinkedList.head.next = second;
-		second.next = second;
-		third.next = second;
-		
-		//10--->5----->9----->7------>null
+		second.next = third;
+		third.next = fourth;
+		singleLinkedList.display();
+
+		// 10--->5----->9----->7------>null
 	}
 }
+
 
 
