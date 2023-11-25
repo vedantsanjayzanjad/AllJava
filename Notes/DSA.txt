@@ -231,5 +231,39 @@ DATA | NEXT =>LIST NODE (NEXT == NULL) for last node
 
 10|  5|  8|null
 
+(IMPLEMENTATION)
+package test;
+
+import java.util.Arrays;
+
+public class SingleLinkedList {
+
+	private ListNode head;
+
+	private static class ListNode {
+		private int data;
+		private ListNode next;
+
+		public ListNode(int data) {
+			this.data = data;
+			this.next = null;
+		}
+	}
+
+	public static void main(String[] args) {
+		SingleLinkedList singleLinkedList = new SingleLinkedList();
+		singleLinkedList.head = new ListNode(10);
+		ListNode second = new ListNode(5);
+		ListNode third = new ListNode(9);
+		ListNode fourth = new ListNode(7);
+		
+		//Now will connect together them to form a chain
+		singleLinkedList.head.next = second;
+		second.next = second;
+		third.next = second;
+		
+		//10--->5----->9----->7------>null
+	}
+}
 
 
