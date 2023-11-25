@@ -143,4 +143,93 @@ n=3
 
 T = 9n^2 + 11n + 5
 O(n^2)
- 
+
+************
+	//removing the Even elements
+		int oddIndex = 0;
+
+		for (int i = 0; i < a.length; i++) {
+			if (a[i] % 2 == 0) {
+				++oddIndex;
+			}
+		}
+		int newIndex = 0;
+		int arrNew[] = new int[a.length];
+		int index=0;
+
+		for (int i1 = 0; i1 < a.length; i1++) {
+			if (a[i1] % 2 == 0) {
+				arrNew[newIndex] = a[i1];
+				++newIndex;
+			}
+		}
+		String string = Arrays.toString(arrNew);
+		System.out.println(string);
+
+		for(int i=a.length-1;i>=0;i--) {
+			arrNew[index] = a[i];
+			++index;
+		}
+		String string1 = Arrays.toString(arrNew);
+		System.out.println(string1);
+		
+		//Shifting the Zeroes To Extream Right
+		int min=a[0];
+		for(int i : a) {
+			if(i > min) {
+				min = i;
+			}
+		}
+		System.out.println(min);
+		int j = 0;
+		for(int i =0;i<a.length;i++) {
+			if(a[i] != 0 && a[j] ==0) {
+				int temp = a[j];
+				a[j] = a[i];
+				a[i] = temp;
+			}
+			if(a[j]!=0) {
+				j++;
+			}
+		}
+		String string11 = Arrays.toString(a);
+		System.out.println(string11);
+		
+		//Resizing The Array
+//		 During resizing the array we need to return the value because
+//		 when we take our return type of an array it will taken as a value and not a
+//		 garbage collector..
+		
+		// missing number
+		int n = a.length + 1;
+		int sum = 0;
+		sum = n * (n + 1) / 2;
+		System.out.println(sum);
+		for (int i : a) {
+			sum = sum - i;
+		}
+		System.out.println(sum);
+		return 0;
+
+	}
+
+	public static void main(String[] args) {
+		int a[] = { 1, 2,6,3, 5, 7};
+		removeArray(a);
+	}
+
+******************
+
+*************  Singly Linked List
+Singly Linked List is used to stored collections of node and has follwoing properties
+
+DATA | NEXT =>LIST NODE (NEXT == NULL) for last node
+1)It Contains Sequence of node.
+2)A node has data and refrence to the next list node.
+3)First node is the head node.
+4)Last node has the data and have points to null.
+
+10|  5|  8|null
+
+
+
