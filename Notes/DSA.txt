@@ -252,6 +252,19 @@ public class SingleLinkedList {
 		}
 	}
 
+	public int getLength() {
+		if(head==null) {
+			return 0;
+		}
+		int count=0;
+		ListNode currentNode=head;
+		while(currentNode!=null) {
+			count++;
+			currentNode = currentNode.next;
+		}
+		return count;
+	}
+
 	public void display() {
 		ListNode currentNode=head;
 		while(currentNode != null) {
@@ -275,6 +288,7 @@ public class SingleLinkedList {
 		singleLinkedList.display();
 
 		// 10--->5----->9----->7------>null
+		System.out.println(singleLinkedList.getLength());
 	}
 }
 
