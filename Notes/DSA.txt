@@ -264,6 +264,43 @@ public class SingleLinkedList {
 		}
 		return count;
 	}
+	
+	public void insertFirst(int value) {
+		ListNode newListNode = new ListNode(value);
+		newListNode.next = head;
+		head = newListNode;
+	}
+	
+	public void insertAtEnd(int value) {
+		ListNode newListNode = new ListNode(value);
+		if(head ==null) {
+			head = newListNode;
+			return;
+		}
+		ListNode currentNode = head;
+		while(currentNode.next!=null) {
+			currentNode = currentNode.next;
+		}
+		currentNode.next = newListNode;
+	}
+
+	public void insertData(int value, int position) {
+		ListNode node = new ListNode(value);
+		if (position == 1) {
+			node.next = head;
+			head = node;
+		} else {
+			ListNode previousNode = head;
+			int count = 1;
+			while (count < position - 1) {
+				previousNode = previousNode.next;
+				count++;
+			}
+			ListNode currentNode = previousNode.next;
+			previousNode.next=node;
+			node.next=currentNode;
+		}
+	}
 
 	public void display() {
 		ListNode currentNode=head;
@@ -272,6 +309,17 @@ public class SingleLinkedList {
 			currentNode = currentNode.next ;
 		}
 		System.out.println("null");
+	}
+
+	public ListNode deleteFirstNode() {
+		if (head == null) {
+			return null;
+		}
+
+		ListNode listNode = head;
+		head = listNode.next;
+		listNode.next = null;
+		return listNode;
 	}
 
 	public static void main(String[] args) {
@@ -289,6 +337,16 @@ public class SingleLinkedList {
 
 		// 10--->5----->9----->7------>null
 		System.out.println(singleLinkedList.getLength());
+		System.out.println(singleLinkedList.getLength());
+		singleLinkedList.insertFirst(5);
+		singleLinkedList.insertFirst(111);
+		singleLinkedList.display();
+		singleLinkedList.insertAtEnd(5);
+		singleLinkedList.insertAtEnd(54);
+		singleLinkedList.insertAtEnd(52);
+		singleLinkedList.insertAtEnd(51);
+		singleLinkedList.insertFirst(51);
+		singleLinkedList.display();
 	}
 }
 
