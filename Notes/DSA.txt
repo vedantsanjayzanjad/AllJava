@@ -347,6 +347,8 @@ public class SingleLinkedList {
 		singleLinkedList.insertAtEnd(51);
 		singleLinkedList.insertFirst(51);
 		singleLinkedList.display();
+		singleLinkedList.deleteFirstNode();
+		singleLinkedList.display();
 	}
 }
 
